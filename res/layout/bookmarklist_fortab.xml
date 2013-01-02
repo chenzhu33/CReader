@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    >
+	<ListView 
+	    android:id="@+id/bookmarklist_fortab" 
+	    android:layout_width="fill_parent" 
+	    android:layout_height="300dip" 
+	    android:layout_marginTop="10.0dip" 
+	    android:layout_marginBottom="15.0dip" 
+	    android:divider="@drawable/black_divider" 
+	    android:dividerHeight="1.0dip"  
+	    android:smoothScrollbar="true" />
+
+</LinearLayout>

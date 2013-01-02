@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingBottom="5dip"
+    android:paddingTop="5dip"
+    android:divider="@drawable/black_divider" >
+	<ImageView
+	    android:id="@+id/bookmark_type_fortab"
+		android:layout_width="30dip"
+		android:layout_height="30dip"
+		android:scaleType="fitXY"
+		android:layout_alignParentLeft="true"
+		android:layout_gravity="center"
+		android:layout_centerVertical="true"
+		android:layout_marginRight="10dip"
+		android:src="@drawable/ic_action_search"
+	    />
+<!-- 		android:background="@drawable/fav_icn_background" -->
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@+id/bookmark_type_fortab"
+		android:layout_marginRight="8dip"
+		android:orientation="vertical" android:layout_gravity="center_vertical">
+		<TextView
+		   	android:id="@+id/bookmark_chaptername_fortab"  
+		    android:layout_gravity="center_vertical"
+			android:ellipsize="end"
+	        android:singleLine="true"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:textSize="18sp"	
+			/>
+		<TextView
+		   	android:id="@+id/bookmark_updatetime_fortab"  
+		    android:layout_gravity="center_vertical"
+			android:ellipsize="end"
+	        android:singleLine="true"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:textSize="15sp"	
+			/>
+
+	</LinearLayout>	
+
+<!-- android:button="@android:drawable/btn_star"  -->
+</RelativeLayout>

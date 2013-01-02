@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_bg_selector"
+    android:id="@+id/globalsetting_rl"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/globalsetting_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:textColor="@drawable/list_text_selector"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/globalsetting_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="41dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="41dip"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/globalsetting_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="41dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="41dip"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:textColor="#659ce3"
+        android:visibility="gone" />
+
+</RelativeLayout>

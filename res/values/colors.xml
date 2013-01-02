@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="list_title">#1d1d1d</color>
+    <color name="list_content">#787878</color>
+    
+    <color name="textcolor">#313131</color>
+    <color name="textcolor63">#636363</color>
+    <color name="siderbarcolor">#202338</color>
+    <color name="trainstationtostationbackgroundcolor">#FFC1C1</color>
+    <color name="list_view_backgroudcoler_white">#ffffffff</color>
+    <color name="list_view_backgroudcoler_gray">#fff9f9f9</color>
+    <color name="list_view_backgroudcoler_click">#ff326ab2</color>
+    <color name="jump_menu_backgroundcolor">#d8515151</color>
+    <color name="read_menu_backgroundcolor">#d8326ab2</color>
+    <color name="read_menu_backgroundcolor_night">#ff24201d</color>
+    <color name="read_menu_backgroundcolor_click">#d8255392</color>
+    <color name="read_menu_backgroundcolor_night_click">#ff56473c</color>
+    <color name="sidebar_text">#ff272834</color>
+    <color name="normal_text_color">#362e2b</color>
+    <color name="herSaid_text_color">#000000</color>
+    <color name="meSaid_text_color">#000000</color>
+    <color name="hint_text_color">#959595</color>
+    <color name="date_text_color">#ffffff</color>
+    <color name="hint_input_color">#c2c2c2</color>
+    <color name="tab_current_color">#4d4e53</color>
+    <color name="alarm_option_text">#77bfe4</color>
+    <color name="alarm_option_disable_color">#a4aaae</color>
+    <color name="alarm_repeat_text">#7e6b5a</color>
+    <color name="alarm_disable_text">#b9b9b9</color>
+    <color name="tab_shadow_color">#1f1f1f</color>
+    <color name="button_text_color">#6d87bc</color>
+    <color name="button_text_color_click">#ffffff</color>
+    <color name="webview_progress_bar_color">#93beff</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_background">#00000000</color>
+
+</resources>

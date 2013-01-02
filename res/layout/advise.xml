@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/advise_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/advise_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/banner_only"
+            android:gravity="center"
+            android:text="意见反馈"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/banner_blueline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/blueline_with_shadow" />
+
+        <TextView
+            android:id="@+id/advise_text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp"
+            android:text="您遇到什么问题，赶快反馈给我们吧!"
+            android:textColor="#636363"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/textarea_bg"
+            android:ems="8"
+            android:gravity="top"
+            android:hint="请输入内容"
+            android:singleLine="false"
+            android:textColorHint="#9f9f9f" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/advise_text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:text="请留下您的联系方式，以便我们及时帮您处理问题："
+            android:textColor="#636363"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/textarea_bg"
+            android:ems="8"
+            android:hint="QQ/邮箱/手机号"
+            android:singleLine="true"
+            android:textColorHint="#9f9f9f" >
+        </EditText>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/advise_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/commit_bt_selector"
+                android:text="提交"
+                android:textColor="#5b75ae"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/advise_cancer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/cancel_bt_selector"
+                android:text="取消"
+                android:textSize="17sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

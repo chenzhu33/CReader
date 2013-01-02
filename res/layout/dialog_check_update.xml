@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg"
+    android:paddingLeft="20dp"
+    android:paddingBottom="20dp"
+    android:paddingRight="20dp" >
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:background="#00000000"
+        android:text="检查更新"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dialog_content_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_title"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="#00000000"
+        android:gravity="center_horizontal"
+        android:text="@string/dialog_update"
+        android:textColor="#505050"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dialog_content_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/dialog_content_update"
+        android:layout_marginTop="15dp"
+        android:background="#00000000"
+        android:text="@string/dialog_content_head"
+        android:textColor="#757575"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/dialog_content_head"
+        android:layout_marginTop="5dp"
+        android:background="#00000000"
+        android:text="@string/dialog_update"
+        android:textColor="#757575"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_content_tail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/dialog_content"
+        android:layout_marginTop="5dp"
+        android:background="#00000000"
+        android:text="@string/dialog_content_tail"
+        android:textColor="#757575"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/dialog_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dialog_content_tail"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/dialog_bt_selector"
+        android:text="确认"
+        android:textColor="#5b75ae"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/dialog_cancer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_content_tail"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/dialog_ok"
+        android:background="@drawable/dialog_cancel_bt_selector"
+        android:text="取消"
+        android:textColor="#929292"
+        android:textSize="16sp" />
+
+</RelativeLayout>

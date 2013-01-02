@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:scrollingCache="true" >
+
+    <RelativeLayout
+        android:id="@+id/catetab_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/banner_only" >
+
+        <ImageView
+            android:id="@+id/catetab_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/search_selector" />
+
+        <TextView
+            android:id="@+id/catetab_novel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="书库"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/banner_blueline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/catetab_title"
+        android:scaleType="fitXY"
+        android:src="@drawable/banner_blueline" />
+
+    <TabHost
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/banner_blueline"
+        android:cacheColorHint="#00000000" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:visibility="gone" />
+
+            <RadioGroup
+                android:id="@+id/cate_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/store_tab_bg"
+                android:checkedButton="@+id/tabbar_cate"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dip" >
+
+                <RadioButton
+                    android:id="@id/tabbar_cate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="72.5dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/cate_left_bt"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="1dip"
+                    android:text="分类"
+                    android:textColor="@android:color/white" />
+
+                <RadioButton
+                    android:id="@+id/tabbar_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="72.5dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/cate_right_g_bt"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="1dip"
+                    android:text="排行"
+                    android:textColor="@android:color/black" />
+            </RadioGroup>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1.0"
+                android:background="#f5f5f5"
+                android:scrollingCache="true" />
+        </LinearLayout>
+    </TabHost>
+
+</RelativeLayout>

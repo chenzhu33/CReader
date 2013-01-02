@@ -1,0 +1,50 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="Theme.SogouDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="transparent">
+        <item name="android:windowBackground">@color/transparent_background</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    
+    <style name="Theme_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item><!-- 控制背景是否变暗 -->
+    </style>
+    
+    <style name="SogouActivityStyle" parent="android:style/Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+     <style name="PreferencesTheme" parent="@android:style/Theme.Translucent">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:cacheColorHint">@color/transparent</item>
+    </style>
+    
+
+    <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_bt_selector</item>
+        <item name="android:paddingLeft">25.0dip</item>
+        <item name="android:maxHeight">10.0dip</item>
+    </style>
+
+    <style name="MyCheckBox2" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_bt_selector2</item>
+        <item name="android:paddingLeft">38dip</item>
+        <item name="android:maxHeight">10.0dip</item>
+    </style>
+    
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/news_relative_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp" >
+
+    <ImageView
+        android:id="@+id/news_list_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/news_list_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toLeftOf="@id/news_list_pic"
+        android:singleLine="true"
+        android:text="暂无标题"
+        android:textColor="@color/list_title"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/news_list_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/news_list_title"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/news_list_pic"
+        android:lineSpacingMultiplier="1.2"
+        android:text="暂无详情"
+        android:textColor="#949494"
+        android:textSize="14sp" />
+
+</RelativeLayout>

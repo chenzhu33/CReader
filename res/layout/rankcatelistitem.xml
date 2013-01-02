@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rankcatelist_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/rankcate_list_pic"
+        android:layout_width="64dip"
+        android:layout_height="84.5dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="15dip"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/rankcate_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/rankcate_list_pic"
+        android:singleLine="true"
+        android:textColor="@drawable/list_text_title_selector"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/rankcate_list_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/rankcate_list_title"
+        android:paddingLeft="5dip"
+        android:singleLine="true"
+        android:textColor="@drawable/list_text_title_selector"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/rankcate_list_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/rankcate_list_desc"
+        android:layout_below="@+id/rankcate_list_title"
+        android:layout_toRightOf="@+id/rankcate_list_pic"
+        android:paddingBottom="1dp"
+        android:paddingTop="2dp"
+        android:singleLine="true"
+        android:textColor="@drawable/list_text_content_selector"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/rankcate_list_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rankcate_list_author"
+        android:layout_toLeftOf="@+id/rankcate_pic_go"
+        android:layout_toRightOf="@+id/rankcate_list_pic"
+        android:maxLines="2"
+        android:paddingBottom="15dp"
+        android:textColor="@drawable/list_text_content_selector"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/rankcate_pic_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="41dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="41dip"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow" />
+
+</RelativeLayout>

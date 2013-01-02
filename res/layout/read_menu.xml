@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+	
+    
+    
+     <RelativeLayout
+        android:id="@+id/menu_top"
+        android:layout_width="fill_parent"
+        android:layout_height="34dip"
+        android:background="@color/read_menu_backgroundcolor"
+        android:layout_alignParentTop="true"
+        >
+		<RelativeLayout
+		    android:layout_width="45dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/menu_booklist_selector"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/menu_booklist"
+		    >
+		    <ImageView
+            android:src="@drawable/book_menu_booklist"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/menu_booklist2"
+            />
+		    
+		</RelativeLayout>
+		
+		<RelativeLayout
+		    android:layout_width="45dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/menu_booklist_selector"
+            android:layout_toLeftOf="@+id/menu_home"
+            android:id="@+id/menu_refresh"
+		    >
+		    <ImageView
+            android:src="@drawable/shuaxin"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/menu_refresh2"
+            />
+		    
+		</RelativeLayout>
+		
+		
+		<RelativeLayout
+		    android:layout_width="45dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/menu_booklist_selector"
+            android:layout_alignParentRight="true"
+            android:id="@+id/menu_home"
+		    >
+		    <ImageView
+            android:src="@drawable/huishouye"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/menu_home2"
+            />
+		    
+		</RelativeLayout>
+        
+		
+    </RelativeLayout>
+    
+    <LinearLayout
+         android:id="@+id/back_to_read"
+         android:layout_width="fill_parent"
+    	 android:layout_height="fill_parent"
+    	 android:layout_below="@+id/menu_top"
+        >
+        
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/menu_download_progress_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="34dip"
+   	 	android:layout_above="@+id/menu_bottom"
+   	 	android:visibility="gone"
+   	 	android:background="@color/read_menu_backgroundcolor"
+        >
+		<LinearLayout
+		    android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_centerInParent="true" 
+	        android:padding="2dip"
+		    >
+		    <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/download_text"
+	            android:text="数据下载中...请稍后"
+	            android:layout_gravity="center_horizontal"
+	            android:textColor="@android:color/white"
+	            android:textSize="12sp"
+	            android:paddingBottom="2dip"
+	            />
+		    
+		    <ProgressBar
+		        android:id="@+id/download_progress_bar" 
+		        android:layout_gravity="center_horizontal"
+		        android:layout_width="280dip"
+	            android:layout_height="wrap_content"
+	            style="?android:attr/progressBarStyleHorizontal"
+	            android:max="100"
+	            android:progress="0"
+	            android:secondaryProgress="0"
+		        />
+		    
+		    
+		</LinearLayout>
+        
+    </RelativeLayout>
+     
+	<LinearLayout
+        android:id="@+id/menu_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="53dip"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" 
+        android:layout_centerHorizontal="true"
+        android:background="@color/read_menu_backgroundcolor"
+        >
+		<RelativeLayout
+		    android:id="@+id/menu_hengping"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+		    android:background="@drawable/menu_button_selector" 
+		    >
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_centerInParent="true"
+		        >
+		        <ImageView
+				    android:id="@+id/menu_hengping1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="center_horizontal"
+				    android:src="@drawable/hengping" />
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="横屏"
+		            android:layout_gravity="center_horizontal"
+		            android:textColor="@android:color/white"
+		            android:textSize="18sp"
+		            />
+
+		        
+		        
+		    </LinearLayout>
+		    
+		</RelativeLayout>
+		
+		<ImageView
+		    android:id="@+id/menu_cut1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:visibility="gone"
+		    android:src="@drawable/read_menu_cut" />
+		
+		<RelativeLayout
+		    android:id="@+id/menu_jindu"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+		    android:background="@drawable/menu_button_selector" 
+		    >
+		   
+		   <LinearLayout
+		        android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_centerInParent="true"
+		        >
+		        <ImageView
+		            android:id="@+id/menu_jindu1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:src="@drawable/jindu" />
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="进度"
+		            android:layout_gravity="center_horizontal"
+		            android:textColor="@android:color/white"
+		            android:textSize="18sp"
+		            />
+
+		     </LinearLayout>
+		</RelativeLayout>
+		
+		<ImageView
+		    android:id="@+id/menu_cut2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:visibility="gone"
+		    android:src="@drawable/read_menu_cut" />
+		
+		<RelativeLayout
+		    android:id="@+id/menu_shezhi"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+		    android:background="@drawable/menu_button_selector" 
+		    >
+           
+		    
+            <LinearLayout
+		        android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_centerInParent="true"
+		        >
+		        <ImageView
+		            android:id="@+id/menu_shezhi1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:src="@drawable/shezhi" />
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:text="设置"
+		            android:textColor="@android:color/white"
+		            android:textSize="18sp"
+		            />
+		        
+		     </LinearLayout>
+         
+		</RelativeLayout>
+		
+		<ImageView
+		    android:id="@+id/menu_cut3"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:visibility="gone"
+		    android:src="@drawable/read_menu_cut" />
+		
+		<RelativeLayout
+		    android:id="@+id/menu_yejian"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+		    android:background="@drawable/menu_button_selector" 
+		    >
+           
+           <LinearLayout
+		        android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_centerInParent="true"
+		        >
+		        <ImageView
+		            android:id="@+id/menu_yejian1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:src="@drawable/yejian" />
+		        <TextView
+		            android:id="@+id/menu_yejian1_text" 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:text="夜间"
+		            android:textColor="@android:color/white"
+		            android:textSize="18sp"
+		            />
+		        
+		     </LinearLayout>
+           		
+		    
+		</RelativeLayout>
+		
+		<ImageView
+		    android:id="@+id/menu_cut4"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:visibility="gone"
+		    android:src="@drawable/read_menu_cut" />
+
+		
+		<RelativeLayout
+		    android:id="@+id/menu_huancun"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+		    android:background="@drawable/menu_button_selector" 
+		    >
+		    
+		     <LinearLayout
+		        android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		        android:orientation="vertical"
+		        android:layout_centerInParent="true"
+		        >
+		       <ImageView
+		            android:id="@+id/menu_huancun1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:src="@drawable/huancun" />
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center_horizontal"
+		            android:text="预读"
+		            android:textColor="@android:color/white"
+		            android:textSize="18sp"
+		            />
+		        
+		     </LinearLayout>
+		     
+		</RelativeLayout>
+
+    </LinearLayout>
+   
+	
+</RelativeLayout>

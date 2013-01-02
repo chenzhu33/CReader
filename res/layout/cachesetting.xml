@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/cache_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/banner_only"
+        android:gravity="center"
+        android:text="预读设置"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/banner_blueline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cache_logo"
+        android:scaleType="fitXY"
+        android:src="@drawable/banner_blueline" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/banner_blueline"
+        android:background="@drawable/news_tab_bg"
+        android:gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="小说预读章节"
+        android:textColor="#5c5c5c"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:background="@drawable/listview_white_selector"
+        android:paddingLeft="15dp" >
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:checked="true"
+            android:text="10章"
+            android:textColor="#5c5c5c"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlayout1"
+        android:background="@drawable/listview_gray_selector"
+        android:paddingLeft="15dp" >
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="30章"
+            android:textColor="#5c5c5c"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlayout2"
+        android:background="@drawable/listview_white_selector"
+        android:paddingLeft="15dp" >
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            style="@style/MyCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="50章"
+            android:textColor="#5c5c5c"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/autoupdate_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bottom_banner"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cache_button_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/commit_bt_selector2"
+            android:text="确认"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/cache_button_cancer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/cancel_bt_selector2"
+            android:text="取消"
+            android:textColor="#929292"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

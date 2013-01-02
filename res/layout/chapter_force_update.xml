@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content" android:layout_width="fill_parent"
+	android:layout_gravity="center" 
+	android:gravity="center"
+	android:background="@drawable/list_bg_white" >
+		
+		
+
+		<TextView
+	        android:id="@+id/chapter_force_update"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:singleLine="true"
+	        android:gravity="center"
+			android:text="更新目录"
+	        android:textColor="@color/textcolor63"
+	        android:textSize="20sp" />
+		
+</LinearLayout>

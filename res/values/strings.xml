@@ -1,0 +1,22 @@
+<resources>
+
+    <string name="app_name">搜狗阅读</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="sure">确定</string>
+    <string name="back">返回</string>
+    <string name="title_activity_sogou_novel">SogouNovelActivity</string>
+    <string name="loading_video">Loading video</string>
+	<string name="test">测试</string>
+	<string name="startread">开始阅读</string>
+	<string name="description">简介</string>
+	<string name="other_lovers">喜欢这本书的人还喜欢:</string>
+	<string name="catalogue">查看目录</string>
+	<string name="span">展开</string>
+	<string name="shrink">收缩</string>
+	<string name="dialog_content">您要清空所有搜索记录吗？</string>
+	<string name="dialog_update">发现新版本</string>
+	<string name="dialog_content_head">更新内容：</string>
+	<string name="dialog_content_tail">确定要更新吗？</string>
+</resources>

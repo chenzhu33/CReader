@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:descendantFocusability="blocksDescendants" >
+
+    <TextView
+        android:id="@+id/bookgrid_space"
+        android:layout_width="80dip"
+        android:layout_height="12dip"
+        android:layout_below="@+id/bookgrid_pic"
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:textSize="12dp" >
+    </TextView>
+
+    <ImageView
+        android:id="@+id/bookgrid_shelf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/bookgrid_space"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/shelf_mid" >
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/bookgrid_pic"
+        android:layout_width="75dp"
+        android:layout_height="97dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="20dip"
+        android:background="#00000000"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingLeft="0.7dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/book_default" />
+
+    <ImageView
+        android:id="@+id/bookgrid_pic_backgroud"
+        android:layout_width="81dp"
+        android:layout_height="107dip"
+        android:layout_alignLeft="@id/bookgrid_pic"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="15dip"
+        android:background="#00000000"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/main_book_bg" />
+
+    <ImageView
+        android:id="@+id/bookgrid_pic_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bookgrid_pic"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dip"
+        android:background="#00000000"
+        android:clickable="false"
+        android:focusable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/gengxin" >
+    </ImageView>
+
+    <RelativeLayout
+        android:id="@+id/bookgrid_namebg"
+        android:layout_width="24dp"
+        android:layout_height="80dp"
+        android:layout_alignRight="@id/bookgrid_pic"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="26dp"
+        android:background="@android:color/white"
+        android:visibility="gone" >
+
+        <com.sogou.component.TextViewVertical
+            android:id="@+id/bookgrid_name"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            textSize="17"
+            android:background="@null"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/stamp" />
+    </RelativeLayout>
+
+</RelativeLayout>

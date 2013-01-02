@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/read_rl"
+    android:background="@android:color/transparent" >
+
+    <!-- <ImageView -->
+    <!-- android:src="@drawable/ic_launcher" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:scaleType="fitXY" -->
+    <!-- android:id="@+id/page_widget" -->
+    <!-- /> -->
+    <com.sogou.bookfile.PageWidget
+        android:id="@+id/page_widget"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:id="@+id/menu_composite_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dip"
+        android:background="@drawable/setting_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/menu_font_set"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dip"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="字号"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/font_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dip"
+                android:clickable="true"
+                android:src="@drawable/font_desc_selector" />
+
+            <ImageView
+                android:id="@+id/font_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:src="@drawable/font_add_selector" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_block_set"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dip"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="行距"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/block_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dip"
+                android:clickable="true"
+                android:src="@drawable/block_small_selector" />
+
+            <ImageView
+                android:id="@+id/block_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:src="@drawable/block_mid_selector" />
+
+            <ImageView
+                android:id="@+id/block_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:src="@drawable/block_large_selector" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_bg_set"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="17dip"
+            android:background="@drawable/color_select_bg"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/bg_set_brown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/brown" />
+
+            <ImageView
+                android:id="@+id/bg_set_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/green" />
+
+            <ImageView
+                android:id="@+id/bg_set_purple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/purple" />
+
+            <ImageView
+                android:id="@+id/bg_set_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/blue" />
+
+            <ImageView
+                android:id="@+id/bg_set_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:src="@drawable/gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_bight_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="17dip"
+            android:layout_marginTop="17dip"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/menu_sun_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/sun_small" />
+
+            <SeekBar
+                android:id="@+id/seekbar_main_bight_set"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:max="225"
+                android:maxHeight="10dip"
+                android:minHeight="10dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:progress="0"
+                android:progressDrawable="@drawable/seekbar_style"
+                android:thumb="@drawable/thumb_ball" />
+
+            <ImageView
+                android:id="@+id/menu_sun_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/sun_big" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_jump"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/jump_menu_backgroundcolor"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <SeekBar
+            android:id="@+id/seekbar_main_jump"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:max="99"
+            android:maxHeight="10dip"
+            android:minHeight="10dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:progress="0"
+            android:progressDrawable="@drawable/seekbar_style"
+            android:thumb="@drawable/thumb_ball" />
+
+        <TextView
+            android:id="@+id/jump_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

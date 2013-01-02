@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ListView
+        android:id="@+id/news_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/transparent"
+        android:divider="#efefef"
+        android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
+        android:smoothScrollbar="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/news_badnetwork"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:text="由于网络原因无法加载新闻，请稍后点此重试"
+        android:textColor="#1d1d1d"
+        android:visibility="gone"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/news_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:text="数据载入中，请稍后"
+            android:textSize="30px" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/setting_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/banner_only"
+        android:gravity="center"
+        android:text="设置"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+    <ImageView
+        android:id="@+id/banner_blueline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueline_with_shadow" />
+
+    <ListView
+        android:id="@+id/global_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="#00000000"
+        android:divider="#eeeeee"
+        android:dividerHeight="0.5dip"
+        android:scrollbars="none" />
+
+</LinearLayout>

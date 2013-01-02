@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:id="@android:id/tabhost"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent" >  
+  
+    <LinearLayout  
+        android:id="@+id/linearLayout1"  
+        android:layout_width="fill_parent"  
+        android:layout_height="fill_parent"  
+        android:orientation="vertical" >  
+  
+        <TabWidget  
+            android:id="@android:id/tabs"  
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content" >  
+        </TabWidget>  
+  
+    <android.support.v4.view.ViewPager  
+        android:id="@+id/vPager"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_gravity="center"  
+        android:layout_weight="1.0"  
+        android:background="#000000"  
+        android:flipInterval="30"  
+        android:persistentDrawingCache="animation" />  
+  
+        <FrameLayout  
+            android:id="@android:id/tabcontent"  
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:visibility="gone" >  
+        </FrameLayout>  
+    </LinearLayout>  
+  
+</TabHost>

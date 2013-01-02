@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/searchhistory_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:background="@android:color/transparent"
+        android:divider="#efefef"
+        android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
+        android:smoothScrollbar="true" />
+
+    <LinearLayout
+        android:id="@+id/searchhistory_clearall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/searchhistory_clearall_i"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search_rubbish" />
+
+        <TextView
+            android:id="@+id/searchhistory_clearall_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="清空历史记录"
+            android:textColor="#5d5d5d"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+</RelativeLayout>

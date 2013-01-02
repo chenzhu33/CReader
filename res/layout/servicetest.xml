@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+   
+    
+	<TextView 
+	    android:id="@+id/err1"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新提醒服务已随应用开启，退出应用仍可存在，需要关闭请点击下面的关闭更新提醒服务,目前后台没有提供接口所以5秒钟发一次请求，20%概率有书本更新。By The Way 关机重启后服务也会自动打开呦，亲"
+        android:textSize="30px"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:layout_centerInParent="true"
+	    />
+	 <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="模拟立即生成更新数据"
+	    android:id="@+id/sql_add_data"
+	   	android:layout_alignParentTop="true"
+	   	android:layout_centerHorizontal="true"
+        />
+	 <Button 
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关闭更新提醒服务"
+	    android:id="@+id/service_stop"
+	    android:layout_below="@+id/err1"
+	    android:layout_centerHorizontal="true"
+	    />
+	 
+	<Button 
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始更新提醒服务"
+	    android:id="@+id/service_start"
+	    android:visibility="gone"
+	    android:layout_alignParentBottom="true"
+	    />
+	
+</RelativeLayout>

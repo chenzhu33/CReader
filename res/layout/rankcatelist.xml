@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rankcatelist_rl"
+    android:background="@android:color/white" >
+
+    <RelativeLayout
+        android:id="@+id/rankcate_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/banner_only" >
+
+        <ImageView
+            android:id="@+id/cate_sidebar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:src="@drawable/catalog_selector" />
+
+        <TextView
+            android:id="@+id/cate_novel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="小说"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/rankcate_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="10dip"
+            android:src="@drawable/search_selector" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/banner_blueline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rankcate_title"
+        android:scaleType="fitXY"
+        android:src="@drawable/blueline_with_shadow" />
+
+    <LinearLayout
+        android:id="@+id/rankcatelist_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:text="数据载入中，请稍后"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/cate_rank_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/banner_blueline"
+        android:divider="#eeeeee"
+        android:dividerHeight="0.5dip"
+        android:fadingEdge="none"
+        android:fastScrollAlwaysVisible="true"
+        android:fastScrollEnabled="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
