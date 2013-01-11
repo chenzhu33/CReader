@@ -1,6 +1,51 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="HomeTheme2" parent="@android:style/Theme.Holo.Light.DarkActionBar"></style>
+
+    <style name="HomeTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:actionDropDownStyle">@style/ActionBarDropDownStyle</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabView</item>
+        <item name="android:actionBarWidgetTheme">@style/ActionBarTheme</item>
+        <item name="android:actionBarItemBackground">@drawable/action_bar_item_background</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_custom_blue_inverse_holo</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_inverse_holo</item>
+        <item name="android:titleTextStyle">@style/ActionBar.Title.Text</item>
+        <item name="android:subtitleTextStyle">@style/ActionBar.Subtitle.Text</item>
+    </style>
+
+    <style name="ActionBarDropDownStyle" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/ab_dropdown_navigation_item_background</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@android:style/Theme.Holo">
+        <item name="android:dropDownListViewStyle">@style/ListViewDropdownStyle</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorHint">#ffcccccc</item>
+        <item name="android:popupMenuStyle">@android:style/Widget.Holo.Light.PopupMenu</item>
+    </style>
+
+    <style name="ActionBarTabView" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/action_bar_tab</item>
+    </style>
+
+    <style name="ListViewDropdownStyle" parent="@android:style/Widget.ListView.DropDown">
+        <item name="android:listSelector">?android:listChoiceBackgroundIndicator</item>
+    </style>
+
+    <style name="ActionBar.Title.Text" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="ActionBar.Subtitle.Text" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle.Inverse">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme" parent="android:Theme.Holo" />
 
     <style name="Theme.SogouDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
@@ -10,7 +55,7 @@
         <item name="android:windowBackground">@color/transparent_background</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-    
+
     <style name="Theme_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -18,22 +63,22 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">#00000000</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimEnabled">true</item><!-- 控制背景是否变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 控制背景是否变暗 -->
     </style>
-    
+
     <style name="SogouActivityStyle" parent="android:style/Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
     </style>
-    
-     <style name="PreferencesTheme" parent="@android:style/Theme.Translucent">
+
+    <style name="PreferencesTheme" parent="@android:style/Theme.Translucent">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:cacheColorHint">@color/transparent</item>
     </style>
-    
 
     <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_bt_selector</item>
@@ -46,5 +91,5 @@
         <item name="android:paddingLeft">38dip</item>
         <item name="android:maxHeight">10.0dip</item>
     </style>
-    
+
 </resources>

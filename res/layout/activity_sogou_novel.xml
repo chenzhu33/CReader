@@ -12,7 +12,7 @@
     <!-- android:scaleType="fitXY" -->
     <!-- android:id="@+id/page_widget" -->
     <!-- /> -->
-    <com.sogou.bookfile.PageWidget
+    <org.carelife.creader.bookfile.PageWidget
         android:id="@+id/page_widget"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

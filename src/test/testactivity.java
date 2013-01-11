@@ -14,12 +14,12 @@ import java.util.Random;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.carelife.creader.db.BookDao;
+import org.carelife.creader.xmlparser.RankParser;
+import org.carelife.creader.xmlparser.SearchParser;
 import org.xml.sax.SAXException;
 
-import com.sogou.R;
-import com.sogou.db.BookDao;
-import com.sogou.xmlparser.ParserRank;
-import com.sogou.xmlparser.ParserSearch;
+import org.carelife.creader.R;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -151,7 +151,7 @@ public class testactivity extends Activity{
 					.openConnection();
 			InputStream input = httpUrlConnection.getInputStream();
 			// 开始解析文件
-			result =  ParserSearch.getSearchResultByXml(input);
+			result =  SearchParser.getSearchResultByXml(input);
 			if(null != httpUrlConnection)
 				httpUrlConnection.disconnect();
 		}catch(Exception err){

@@ -1,8 +1,26 @@
 <resources>
 
-    <string name="app_name">搜狗阅读</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="hello">Hello world!</string>
+    <string name="app_name">CReader</string>
+    <string name="novel">小说</string>
+    <string name="news">新闻</string>
+    <string name="setting">设置</string>
+    <string name="addbook">添加书籍</string>
+    <string name="exit">退出</string>
+    <string name="cache">预读章节</string>
+    <string name="normal">常规</string>
+    <string name="advance">高级</string>
+    <string name="autoupdate">自动追更</string>
+    <string name="advise">意见反馈</string>
+    <string name="aboutus">关于</string>
+    <string name="checkupdate">检查更新</string>
+    <string name="other">其它</string>
+    <string name="author_title">作者</string>
+    <string name="author_name">Carelife</string>
+    <string name="version_title">版本号</string>
+    <string name="version_name">Alpha 1.0</string>
+    <string name="data_control">流量控制</string>
+    <string name="support">支持</string>    
+    
     <string name="menu_settings">Settings</string>
     <string name="sure">确定</string>
     <string name="back">返回</string>

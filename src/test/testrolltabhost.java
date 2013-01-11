@@ -1,6 +1,6 @@
 package test;
 
-import com.sogou.R;
+import org.carelife.creader.R;
 
 import java.util.ArrayList;  
 import java.util.List;  

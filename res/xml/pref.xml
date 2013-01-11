@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/normal" >
+        <ListPreference
+            android:defaultValue="10"
+            android:dialogTitle="@string/cache"
+            android:entries="@array/cache"
+            android:entryValues="@array/cache_value"
+            android:key="cache"
+            android:title="@string/cache" />
+
+        <Preference android:title="@string/autoupdate" >
+            <intent
+                android:targetClass="org.carelife.creader.ui.activity.AutoUpdate"
+                android:targetPackage="org.carelife.creader" />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/advance" >
+        <Preference
+            android:key="data_control"
+            android:title="@string/data_control" >
+            <intent
+                android:targetClass="org.carelife.creader.ui.activity.CacheSetting"
+                android:targetPackage="org.carelife.creader" />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/support" >
+        <Preference android:title="@string/advise" >
+            <intent
+                android:targetClass="org.carelife.creader.ui.activity.Advisor"
+                android:targetPackage="org.carelife.creader" />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/aboutus" >
+        <Preference
+            android:summary="@string/author_name"
+            android:title="@string/author_title" />
+        <Preference
+            android:key="version_key"
+            android:summary="@string/version_name"
+            android:title="@string/version_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

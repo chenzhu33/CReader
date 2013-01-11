@@ -1,234 +1,250 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sogou"
+    package="org.carelife.creader"
     android:versionCode="1000"
-    android:versionName="1.0.00"  >
+    android:versionName="1.0.00" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
-	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS"/>
+    <uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
     <application
+        android:name=".ui.activity.CrashApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name=".sogounovel.CrashApplication"
-        android:theme="@style/AppTheme" >
-        <meta-data android:value="1000" android:name="CHANNEL"></meta-data> 
-        <activity
-            android:name=".sogounovel.SplashActivity"
-            android:theme="@style/SogouActivityStyle"
-            android:screenOrientation="portrait">
-        	<intent-filter>
+        android:theme="@style/HomeTheme" >
+        <meta-data
+            android:name="CHANNEL"
+            android:value="1000" >
+        </meta-data>
+     <activity
+            android:name=".ui.activity.MainActivity2"
+             >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
-            android:name=".sogounovel.MainActivity"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:name=".ui.activity.LauncherPageActivity"
+            android:theme="@style/HomeTheme" >
+
+        </activity>
+        
         <activity
-            android:name=".sogounovel.MainNovelGrid"
-            android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SogouActivityStyle" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".sogounovel.MainNews"
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.MainPage"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".ui.activity.MainNovelGrid"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.MainNews"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.MainPage"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="test.rollmenu"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="test.testrolltabhost"
             android:launchMode="singleTask"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.BookStoreTab"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustResize"
+            android:name=".ui.activity.BookStoreTab"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="test.testactivity"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.SogouNovelActivityPager"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+            android:name=".ui.activity.SogouNovelActivityPager"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="false"
+            android:launchMode="singleTask"
             android:screenOrientation="nosensor"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".ui.activity.SogouNovelActivity"
             android:configChanges="orientation|screenSize"
             android:launchMode="singleTask"
-            android:hardwareAccelerated="false"/>
-        <activity
-            android:name=".sogounovel.SogouNovelActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:screenOrientation="nosensor"
-            android:configChanges="orientation|screenSize"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".ui.activity.SearchPage"
             android:launchMode="singleTask"
-            />
-         <activity
-            android:name=".sogounovel.SearchPage"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.activity.BookCate"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.BookCate"
-           android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.CatePage"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.CatePage"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.RankPage"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.RankPage"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.CateList"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.CateList"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.SearchResultList"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.SearchResultList"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.SearchHot"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.SearchHot"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.SearchHistory"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.SearchHistory"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-         <activity
-            android:name=".sogounovel.TcBookActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait"/>
-         <service android:name=".service.UpdateService"></service>
-		 <service android:name=".service.PushService">
-		     <intent-filter >
-		         <action android:name="com.sogou.service.PushService"/>
-		         <category android:name="android.intent.category.DEFAULT"/>
-		     </intent-filter>
-		 </service>  
-		 <receiver android:name="com.sogou.receive.BootReceiver">
-		     <intent-filter >
-		         <action android:name="android.intent.action.BOOT_COMPLETED"/>
-		         <category android:name="android.intent.category.LAUNCHER"/>
-		     </intent-filter>
-		 </receiver>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.TcBookActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <service android:name=".service.UpdateService" >
+        </service>
+        <service android:name=".service.PushService" >
+            <intent-filter>
+                <action android:name="org.carelife.creader.service.PushService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".service.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
 
         <activity
-            android:name=".sogounovel.BookMark"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".ui.activity.BookMark"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.ChapterList"
-            android:launchMode="singleTask" 
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".ui.activity.ChapterList"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="behind"/>
+            android:launchMode="singleTask"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.BookList"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:launchMode="singleTask" 
-            android:screenOrientation="portrait"/>
+            android:name=".ui.activity.BookList"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name=".util.FileManager"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.ReadMenu"
-            android:theme="@style/transparent"
-            android:screenOrientation="behind"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.ReadMenu"
             android:configChanges="orientation|screenSize"
-            android:launchMode="singleTask" />
-      	<activity
-            android:name=".sogounovel.BookDetail"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.BookShelf"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="behind"
+            android:theme="@style/transparent" />
+        <activity
+            android:name=".ui.activity.BookDetail"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.GlobalSetting"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.BookShelf"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.CacheSetting"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:launchMode="singleTask" 
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.GlobalSetting"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-      	<activity
-            android:name=".sogounovel.AboutUs"
-            android:theme="@android:style/Theme.NoTitleBar"
+        <activity
+            android:name=".ui.activity.CacheSetting"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.Advisor"
-            android:theme="@android:style/Theme.NoTitleBar"
+        <activity
+            android:name=".ui.activity.AboutUs"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-      	<activity
-            android:name=".sogounovel.NewsDetail"
-            android:theme="@android:style/Theme.NoTitleBar"
+        <activity
+            android:name=".ui.activity.Advisor"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".sogounovel.NewsWebActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
+            android:name=".ui.activity.NewsDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.NewsWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.AutoUpdate"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".sogounovel.AutoUpdate"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
+            android:name=".ui.activity.ImageDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".sogounovel.ImageDetail"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".sogounovel.ImageGalleryActivity"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:screenOrientation="portrait" />
-        
+            android:name=".ui.activity.ImageGalleryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 
 </manifest>

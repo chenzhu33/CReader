@@ -80,7 +80,7 @@
         android:background="@android:color/white"
         android:visibility="gone" >
 
-        <com.sogou.component.TextViewVertical
+        <org.carelife.creader.ui.component.TextViewVertical
             android:id="@+id/bookgrid_name"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
