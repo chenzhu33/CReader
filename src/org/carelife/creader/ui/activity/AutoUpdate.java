@@ -11,10 +11,13 @@ import org.carelife.creader.util.ToastUtil;
 
 import org.carelife.creader.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -22,6 +25,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 
@@ -48,7 +52,26 @@ public class AutoUpdate extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		View title = getLayoutInflater().inflate(R.layout.switch_action_layout,
+				null);
+		Switch switchBtn = (Switch) title.findViewById(R.id.switchBtn);
+		getActionBar().setCustomView(title,
+				new ActionBar.LayoutParams(Gravity.RIGHT));
+		getActionBar().setDisplayShowCustomEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setTitle("×Ô¶¯×·¸ü");
+
+		switchBtn.setChecked(true);
+		switchBtn
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO ....
+					}
+				});
+
 		setContentView(R.layout.autoupdate);
 
 		toast = ToastUtil.getInstance(this);
@@ -163,5 +186,21 @@ public class AutoUpdate extends Activity {
 			}
 		}
 		selectAll.setChecked(cheak_all(isCheckedList));
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			AutoUpdate.this.finish();
+			break;
+		case R.id.menu_search:
+			Intent intent = new Intent(AutoUpdate.this, SearchPage.class);
+			AutoUpdate.this.startActivity(intent);
+			break;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 }

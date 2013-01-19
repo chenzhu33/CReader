@@ -51,7 +51,6 @@ import android.widget.TextView;
 
 public class MainView implements OnScrollListener {
 	private View mainView;
-	private MyMoveView myMoveView;
 	private Context context;
 
 	ListView rank_cate_list = null;
@@ -74,8 +73,8 @@ public class MainView implements OnScrollListener {
 	TextView cateTitle;
 	private ProgressDialog dialog;
 	LinearLayout progressbar;
-	SearchData book_searchresult,temp_result;
-	String book_name,author_name,temp_tc_url;
+	SearchData book_searchresult, temp_result;
+	String book_name, author_name, temp_tc_url;
 	BookBasicBean book;
 	BookDao bookdao;
 
@@ -90,7 +89,8 @@ public class MainView implements OnScrollListener {
 				break;
 			case 0: // 初次加载
 				if (null == xml_data) {
-					ToastUtil.getInstance(context).setText("亲，您的网络不给力啊，检查下网络设置吧！");
+					ToastUtil.getInstance(context).setText(
+							"亲，您的网络不给力啊，检查下网络设置吧！");
 					progressbar.setVisibility(View.GONE);
 					return;
 				}
@@ -107,31 +107,36 @@ public class MainView implements OnScrollListener {
 				listaddview = lay.inflate(R.layout.booklistmore, null);
 				rank_cate_list.addFooterView(listaddview);
 
-				list_Adapter = new CateRankListAdapter(context, data_list, handler,dialog);
+				list_Adapter = new CateRankListAdapter(context, data_list,
+						handler, dialog);
 				rank_cate_list.setAdapter(list_Adapter);
 				rank_cate_list.setOnScrollListener(MainView.this);
-				rank_cate_list.setOnItemClickListener(new OnItemClickListener() {
+				rank_cate_list
+						.setOnItemClickListener(new OnItemClickListener() {
 
-					@Override
-					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-							long arg3) {
-						if (arg2 >= data_list.size()) {
-							ToastUtil.getInstance(context).setText("亲底下没了啊");
-							return;
-						}
-						book_name = data_list.get(arg2).getbookname();
-						dialog.show();
-						new Thread() {
-							public void run() {
-								book_searchresult = XmlUtil.getSearchOneXML(book_name);
-								Message message = handler.obtainMessage(2,
-										book_searchresult);
-								handler.sendMessage(message);
+							@Override
+							public void onItemClick(AdapterView<?> arg0,
+									View arg1, int arg2, long arg3) {
+								if (arg2 >= data_list.size()) {
+									ToastUtil.getInstance(context).setText(
+											"亲底下没了啊");
+									return;
+								}
+								book_name = data_list.get(arg2).getbookname();
+								dialog.show();
+								new Thread() {
+									public void run() {
+										book_searchresult = XmlUtil
+												.getSearchOneXML(book_name);
+										Message message = handler
+												.obtainMessage(2,
+														book_searchresult);
+										handler.sendMessage(message);
+									}
+								}.start();
+
 							}
-						}.start();
-						
-					}
-				});
+						});
 				if (MAX_COUNT == 1) {
 					invisibleFooter();
 				}
@@ -152,8 +157,9 @@ public class MainView implements OnScrollListener {
 				mCount++;
 				list_Adapter.notifyDataSetChanged();
 				rank_cate_list.invalidateViews();
-//				list_Adapter = new CateRankListAdapter(context, data_list, handler);
-//				rank_cate_list.setAdapter(list_Adapter);
+				// list_Adapter = new CateRankListAdapter(context, data_list,
+				// handler);
+				// rank_cate_list.setAdapter(list_Adapter);
 				break;
 
 			case 2: // 处理点击事件
@@ -166,28 +172,43 @@ public class MainView implements OnScrollListener {
 						e.printStackTrace();
 					}
 					if (temp_result.getloc() != 1) {
-						
-						//非本地存储书籍入库
+
+						// 非本地存储书籍入库
 						book_name = temp_result.getbookname();
 						author_name = temp_result.getauthor_name();
-						
+
 						new Thread() {
 							public void run() {
 								try {
-									SaveBitmap(AsynImageLoaderUtil.loadImageFromNet_throw(temp_result.getpicurl()));
-									book = new BookBasicBean(book_name,author_name,null);
+									SaveBitmap(AsynImageLoaderUtil
+											.loadImageFromNet_throw(temp_result
+													.getpicurl()));
+									book = new BookBasicBean(book_name,
+											author_name, null);
 									book.setIs_loc(temp_result.getloc());
-									book.setChapter_md5(UrlHelper.tc_url + temp_tc_url);
-									book.setPic_path(FileUtil.new_dir + FileUtil.cheak_string(book_name) + "_" + FileUtil.cheak_string(author_name) +"/" + UrlHelper.cover_string);
+									book.setChapter_md5(UrlHelper.tc_url
+											+ temp_tc_url);
+									book.setPic_path(FileUtil.new_dir
+											+ FileUtil.cheak_string(book_name)
+											+ "_"
+											+ FileUtil
+													.cheak_string(author_name)
+											+ "/" + UrlHelper.cover_string);
 									bookdao.add_book(book);
-									String temp_max_chapter = UpdateUtil.cheak_maxchaptercode(context, book_name);
+									String temp_max_chapter = UpdateUtil
+											.cheak_maxchaptercode(context,
+													book_name);
 									book.setMax_md5(temp_max_chapter);
 								} catch (IOException e) {
-									book = new BookBasicBean(book_name,author_name,null);
+									book = new BookBasicBean(book_name,
+											author_name, null);
 									book.setIs_loc(temp_result.getloc());
-									book.setChapter_md5(UrlHelper.tc_url + temp_tc_url);
+									book.setChapter_md5(UrlHelper.tc_url
+											+ temp_tc_url);
 									bookdao.add_book(book);
-									String temp_max_chapter = UpdateUtil.cheak_maxchaptercode(context, book_name);
+									String temp_max_chapter = UpdateUtil
+											.cheak_maxchaptercode(context,
+													book_name);
 									book.setMax_md5(temp_max_chapter);
 									e.printStackTrace();
 								} finally {
@@ -195,10 +216,9 @@ public class MainView implements OnScrollListener {
 								}
 							}
 						}.start();
-						
-						
+
 						edit.putString("webview_book_name", book_name);
-						edit.putString("webview_author_name",author_name);
+						edit.putString("webview_author_name", author_name);
 						edit.putString("webview_url", UrlHelper.tc_url
 								+ temp_tc_url);
 						edit.commit();
@@ -213,9 +233,10 @@ public class MainView implements OnScrollListener {
 						dialog.dismiss();
 						context.startActivity(intent);
 					}
-				}else{
+				} else {
 					dialog.dismiss();
-					ToastUtil.getInstance(context).setText("亲，您的网络不给力啊，稍后再试吧...");
+					ToastUtil.getInstance(context).setText(
+							"亲，您的网络不给力啊，稍后再试吧...");
 				}
 				break;
 			}
@@ -230,7 +251,6 @@ public class MainView implements OnScrollListener {
 		this.context = context;
 		mainView = LayoutInflater.from(context).inflate(R.layout.rankcatelist,
 				null);
-		this.myMoveView = myMoveView;
 		initView();
 	}
 
@@ -244,30 +264,6 @@ public class MainView implements OnScrollListener {
 		dialog.setTitle("加载中");
 		dialog.setMessage("数据加载中...");
 
-		sidebar = (ImageView) this.mainView.findViewById(R.id.cate_sidebar);
-		sidebar.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				int now_state = myMoveView.getNowState();
-				if (now_state == MyMoveView.MAIN) {
-					myMoveView.moveToLeft(true);
-				} else {
-					myMoveView.moveToMain(true);
-				}
-			}
-		});
-
-		search = (ImageView) this.mainView.findViewById(R.id.rankcate_search);
-		search.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent intent = new Intent(context, SearchPage.class);
-				context.startActivity(intent);
-			}
-		});
-		cateTitle = (TextView) this.mainView
-				.findViewById(R.id.cate_novel_title);
-		cateTitle.setText(sp.getString("catename", "玄幻"));
-
 		progressbar = (LinearLayout) this.mainView
 				.findViewById(R.id.rankcatelist_progressbar);
 		progressbar.setVisibility(View.VISIBLE);
@@ -275,22 +271,6 @@ public class MainView implements OnScrollListener {
 		catestring = sp.getString("caterankstring", "xuanhuan");
 		rank_cate_list = (ListView) this.mainView
 				.findViewById(R.id.cate_rank_list);
-		
-		
-//		//反射更改快速下拉条
-//		try { 
-//		    Field f = AbsListView.class.getDeclaredField("mFastScroller"); 
-//		    f.setAccessible(true); 
-//		    Object o=f.get(rank_cate_list); 
-//		    f=f.getType().getDeclaredField("mThumbDrawable"); 
-//		    f.setAccessible(true); 
-//		    Drawable drawable=(Drawable) f.get(o); 
-//		    drawable=this.mainView.getResources().getDrawable(R.drawable.scroller);
-//		    f.set(o,drawable); 
-////		    Toast.makeText(this, f.getType().getName(), 1000).show(); 
-//		} catch (Exception e) { 
-//		    throw new RuntimeException(e); 
-//		}
 
 		new Thread() {
 			public void run() {
@@ -303,12 +283,13 @@ public class MainView implements OnScrollListener {
 				}
 			}
 		}.start();
-		
+
 		indicator();
 	}
 
-    private void indicator() {
-		RelativeLayout rl = (RelativeLayout) this.mainView.findViewById(R.id.rankcatelist_rl);
+	private void indicator() {
+		RelativeLayout rl = (RelativeLayout) this.mainView
+				.findViewById(R.id.rankcatelist_rl);
 		if (0 == sp.getInt("hasIndicator3", 0)) {
 			edit.putInt("hasIndicator3", 1);
 			edit.commit();
@@ -318,7 +299,7 @@ public class MainView implements OnScrollListener {
 			indicator3.setScaleType(ScaleType.FIT_XY);
 			indicator3.setAdjustViewBounds(true);
 			rl.addView(indicator3, new RelativeLayout.LayoutParams(
-					LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+					LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			indicator3.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -328,7 +309,7 @@ public class MainView implements OnScrollListener {
 			});
 		}
 	}
-	
+
 	public View getView() {
 		return mainView;
 	}
@@ -368,7 +349,8 @@ public class MainView implements OnScrollListener {
 				new Thread() {
 					public void run() {
 						try {
-							xml_data = XmlUtil.getXML(catestring, start, list_once);
+							xml_data = XmlUtil.getXML(catestring, start,
+									list_once);
 							handler.sendEmptyMessage(1);
 
 						} catch (IOException e) {
@@ -378,7 +360,7 @@ public class MainView implements OnScrollListener {
 				}.start();
 
 			};
-//		}.execute();
+			// }.execute();
 		}.execute(Math.abs(new Random(System.currentTimeMillis()).nextLong() % 2000));
 
 	}
@@ -393,41 +375,44 @@ public class MainView implements OnScrollListener {
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 
 	}
-	
-	
-	private void SaveBitmap(Bitmap bmp){
-//		Bitmap bitmap = Bitmap.createBitmap(800, 600, Config.ARGB_8888);  
-//		Canvas canvas = new Canvas(bitmap);
-//		//加载背景图片
-//		Bitmap bmps = BitmapFactory.decodeResource(getResources(), R.drawable.playerbackground);
-//		canvas.drawBitmap(bmps, 0, 0, null);
-//		//加载要保存的画面
-//		canvas.drawBitmap(bmp, 10, 100, null);
-//		//保存全部图层
-//		canvas.save(Canvas.ALL_SAVE_FLAG);
-//		canvas.restore();
-		//存储路径
-		File file = new File(FileUtil.new_dir + FileUtil.cheak_string(book_name) + "_" + FileUtil.cheak_string(author_name));
-		if(!file.exists()){
+
+	private void SaveBitmap(Bitmap bmp) {
+		// Bitmap bitmap = Bitmap.createBitmap(800, 600, Config.ARGB_8888);
+		// Canvas canvas = new Canvas(bitmap);
+		// //加载背景图片
+		// Bitmap bmps = BitmapFactory.decodeResource(getResources(),
+		// R.drawable.playerbackground);
+		// canvas.drawBitmap(bmps, 0, 0, null);
+		// //加载要保存的画面
+		// canvas.drawBitmap(bmp, 10, 100, null);
+		// //保存全部图层
+		// canvas.save(Canvas.ALL_SAVE_FLAG);
+		// canvas.restore();
+		// 存储路径
+		File file = new File(FileUtil.new_dir
+				+ FileUtil.cheak_string(book_name) + "_"
+				+ FileUtil.cheak_string(author_name));
+		if (!file.exists()) {
 			file.mkdirs();
 		}
-		File file_temp = new File(file.getPath()+ "/" + UrlHelper.cover_string);
-		if(!file_temp.exists()){
+		File file_temp = new File(file.getPath() + "/" + UrlHelper.cover_string);
+		if (!file_temp.exists()) {
 			try {
 				file_temp.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-			try {
-				FileOutputStream fileOutputStream = new FileOutputStream(file_temp.getPath());
-				bmp.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-				fileOutputStream.close();
-				System.out.println("saveBmp is here:"+file.getPath()+ "/" + UrlHelper.cover_string);
-			} catch (Exception e) {
-						e.printStackTrace();
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream(
+					file_temp.getPath());
+			bmp.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+			fileOutputStream.close();
+			System.out.println("saveBmp is here:" + file.getPath() + "/"
+					+ UrlHelper.cover_string);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	
+
 }

@@ -5,6 +5,7 @@
     <string name="news">新闻</string>
     <string name="setting">设置</string>
     <string name="addbook">添加书籍</string>
+    <string name="searchbook">搜索书籍</string>
     <string name="exit">退出</string>
     <string name="cache">预读章节</string>
     <string name="normal">常规</string>
@@ -20,6 +21,7 @@
     <string name="version_name">Alpha 1.0</string>
     <string name="data_control">流量控制</string>
     <string name="support">支持</string>    
+    <string name="search">搜索</string>    
     
     <string name="menu_settings">Settings</string>
     <string name="sure">确定</string>

@@ -40,7 +40,6 @@ public class BookMark extends Activity{
 	List<List<BookMarkChildBean>> book_mark_child = new ArrayList<List<BookMarkChildBean>>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-//		System.out.println("onCreate!");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bookmark);
 		fm = new FileUtil();

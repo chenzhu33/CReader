@@ -3,23 +3,22 @@ package org.carelife.creader.dao;
 import org.carelife.creader.R;
 
 public class UrlHelper {
-	public static String[] book_cate = { "玄幻", "言情", "都市", "仙侠", "校园", "耽美",
-			"游戏", "悬疑", "科幻", "军史", "同人", "其他" };
+	public static String[][] book_cate = {{ "玄幻", "言情", "都市", "仙侠", "校园", "耽美",
+			"游戏", "悬疑", "科幻", "军史", "同人", "其他" },{ "本日排行", "本月排行", "本周排行", "人气排行",
+				"新书排行", "连载排行", "全本排行" }};
 
-	public static String[] goto_data = { "xuanhuan", "yanqing", "dushi",
+	public static String[][] goto_data = {{ "xuanhuan", "yanqing", "dushi",
 			"xianxia", "xiaoyuan", "danmei", "youxi", "xuanyi", "kehuan",
-			"junshi", "tongren", "qita" };
+			"junshi", "tongren", "qita" },{ "benri", "benyue", "benzhou",
+				"renqi", "xinshu", "lianzai", "quanben" }};
 
-	public static String[] book_rank = { "本日排行", "本月排行", "本周排行", "人气排行",
-			"新书排行", "连载排行", "全本排行" };
-
-	public static String[] goto_data_rank = { "benri", "benyue", "benzhou",
-			"renqi", "xinshu", "lianzai", "quanben" };
+//	public static String[] book_rank = { "本日排行", "本月排行", "本周排行", "人气排行",
+//			"新书排行", "连载排行", "全本排行" };
+//
+//	public static String[] goto_data_rank = { "benri", "benyue", "benzhou",
+//			"renqi", "xinshu", "lianzai", "quanben" };
 
 	public static String goto_data_search = "resou";
-
-	public static String[] newsGroupName = { "nation", "social", "internation",
-			"weapon", "sport", "fastnews" };
 	
 	public static int[] backgroundColor = { R.drawable.list_bg_white,
 			R.drawable.list_bg_gray };

@@ -5,8 +5,8 @@ import java.util.List;
 import org.carelife.creader.dao.VersionData;
 import org.carelife.creader.service.UpdateService;
 import org.carelife.creader.ui.adapter.GlobalSettingAapter;
-import org.carelife.creader.ui.adapter.GlobalSettingFragment;
 import org.carelife.creader.ui.component.IntroduceDialog;
+import org.carelife.creader.ui.fragment.GlobalSettingFragment;
 import org.carelife.creader.util.ToastUtil;
 import org.carelife.creader.R;
 
@@ -229,7 +229,6 @@ public class GlobalSetting extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent;
         switch (item.getItemId()) {
             case android.R.id.home:
                 GlobalSetting.this.finish();

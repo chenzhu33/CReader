@@ -4,31 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.carelife.creader.dao.RssData;
-import org.carelife.creader.dao.UrlHelper;
 import org.carelife.creader.util.AsynImageLoaderUtil;
-import org.carelife.creader.util.NetworkUtil;
-import org.carelife.creader.util.ToastUtil;
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnTouchListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.carelife.creader.R;
-import org.carelife.creader.ui.activity.BookDetail;
-import org.carelife.creader.ui.activity.NewsDetail;
-import org.carelife.creader.ui.activity.NewsWebActivity;
 
 public class NewsListAdapter extends BaseAdapter {
 	Context context;
@@ -107,7 +95,7 @@ public class NewsListAdapter extends BaseAdapter {
 							return;
 						}
 					}
-					if(pic_url.equals("")) {
+					if (pic_url.equals("")) {
 						return;
 					}
 					Bitmap bitmap = AsynImageLoaderUtil
@@ -134,55 +122,12 @@ public class NewsListAdapter extends BaseAdapter {
 			holder.content.setText(desp.replaceAll("[ |　| ]*", ""));
 		}
 
-//		holder.layout.setBackgroundColor(Color
-//				.parseColor(ConstData.backgroundColor[position % 2]));
-		holder.layout.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
-
-		holder.layout.setOnTouchListener(new OnTouchListener() {
-
-			public boolean onTouch(View v, MotionEvent event) {
-				TextView title = (TextView) v
-						.findViewById(R.id.news_list_title);
-				TextView content = (TextView) v
-						.findViewById(R.id.news_list_content);
-
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					v.setBackgroundResource(R.drawable.item_selected);
-					v.setPadding(0, 9, 0, 9);
-					title.setTextColor(Color.WHITE);
-					content.setTextColor(Color.WHITE);
-
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					v.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
-					v.setPadding(0, 9, 0, 9);
-					title.setTextColor(Color.parseColor("#1d1d1d"));
-					content.setTextColor(Color.parseColor("#949494"));
-					if(null == data.get(position).getLink()) {
-						ToastUtil.getInstance(context).setText("此条无记录，抱歉啊。。.");
-						return true;
-					}
-					if(NetworkUtil.checkWifiAndGPRS(context)){
-						Intent intent = new Intent(context, NewsWebActivity.class);
-						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-						intent.putExtra("url", data.get(position).getLink());
-						context.startActivity(intent);
-					}else{
-						ToastUtil.getInstance(context).setText("亲，您的网络不给力啊，稍后再试吧...");
-						return true;
-					}
-					
-
-				} else {
-					// v.setBackgroundColor(Color
-					// .parseColor(ConstData.backgroundColor[position % 2]));
-					v.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
-					v.setPadding(0, 9, 0, 9);
-					title.setTextColor(Color.parseColor("#1d1d1d"));
-					content.setTextColor(Color.parseColor("#949494"));
-				}
-				return true;
-			}
-		});
+		if (position % 2 == 0)
+			holder.layout
+					.setBackgroundResource(R.drawable.listview_white_selector);
+		else
+			holder.layout
+					.setBackgroundResource(R.drawable.listview_gray_selector);
 
 		return convertView;
 	}

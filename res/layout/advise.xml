@@ -10,23 +10,6 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/advise_logo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/banner_only"
-            android:gravity="center"
-            android:text="意见反馈"
-            android:textColor="@android:color/white"
-            android:textSize="22sp" />
-
-        <ImageView
-            android:id="@+id/banner_blueline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/blueline_with_shadow" />
-
-        <TextView
             android:id="@+id/advise_text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,6 +86,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/cancel_bt_selector"
                 android:text="取消"
+                android:textColor="#636363"
                 android:textSize="17sp" />
         </RelativeLayout>
     </LinearLayout>

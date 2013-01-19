@@ -99,9 +99,9 @@ public class MyMoveView extends ViewGroup {
 		if (main_show_view == null) {
 			main_show_view = new MainView(this.getContext(), this);
 			left_show_view = new ItemView(this.getContext(),
-					UrlHelper.book_cate, UrlHelper.goto_data);
+					UrlHelper.book_cate[0], UrlHelper.goto_data[0]);
 			right_show_view = new ItemView(this.getContext(),
-					UrlHelper.book_rank, UrlHelper.goto_data_rank);
+					UrlHelper.book_cate[1], UrlHelper.goto_data[1]);
 		}
 
 		this.addView(left_show_view.getView());

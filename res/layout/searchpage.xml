@@ -6,138 +6,50 @@
     android:background="@android:color/white"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/catetab_title"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/search_group"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/banner_only" >
+        android:layout_gravity="top"
+        android:checkedButton="@+id/group_bookmark"
+        android:background="@drawable/store_tab_bg"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:orientation="horizontal" >
 
-        <TextView
-            android:id="@+id/search_logo"
+        <RadioButton
+            android:id="@+id/group_hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="搜索"
-            android:textColor="@android:color/white"
-            android:textSize="22sp" />
-    </RelativeLayout>
+            android:layout_marginLeft="65dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/cate_left_bt"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="热门搜索"
+            android:textColor="@android:color/white" />
 
-    <ImageView
-        android:id="@+id/banner_blueline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner_blueline" />
+        <RadioButton
+            android:id="@+id/group_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="65dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/cate_right_g_bt"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="1dip"
+            android:text="搜索历史"
+            android:textColor="@android:color/black" />
+    </RadioGroup>
 
-    <RelativeLayout
-        android:id="@+id/searchbar_layout"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vPager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/search_area_bg"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp" >
-
-        <EditText
-            android:id="@+id/query_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/search_area"
-            android:hint="查询书名、作者..."
-            android:paddingLeft="8dp"
-            android:singleLine="true"
-            android:textColorHint="#AAAAAA"
-            android:textSize="16dp" />
-
-        <ImageView
-            android:id="@+id/search_query_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/query_text"
-            android:layout_centerVertical="true"
-            android:src="@drawable/search_selector_2" />
-
-        <ImageButton
-            android:id="@+id/search_query_clear"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="2dip"
-            android:layout_toLeftOf="@+id/search_query_button"
-            android:src="@drawable/clear"
-            android:visibility="gone" />
-    </RelativeLayout>
-
-    <TabHost
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/tabhost"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#f5f5f5"
-        android:cacheColorHint="#00000000" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@android:color/white"
-            android:orientation="vertical" >
-
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:cacheColorHint="#00000000"
-                android:visibility="gone" />
-
-            <RadioGroup
-                android:id="@+id/search_group"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:checkedButton="@+id/group_bookmark"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/group_hot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="65dp"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/cate_left_bt"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="1dip"
-                    android:text="热门搜索"
-                    android:textColor="@android:color/white" />
-
-                <RadioButton
-                    android:id="@+id/group_history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="65dp"
-                    android:layout_weight="1.0"
-                    android:background="@drawable/cate_right_g_bt"
-                    android:button="@null"
-                    android:gravity="center" 
-                    android:padding="1dip"
-                    android:text="搜索历史"
-                    android:textColor="@android:color/black" />
-            </RadioGroup>
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.0"
-                android:background="@android:color/white"
-                android:fadingEdge="none" />
-        </LinearLayout>
-    </TabHost>
+        android:background="@android:color/white"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
 
 </LinearLayout>

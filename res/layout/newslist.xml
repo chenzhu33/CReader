@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ListView
+    <org.carelife.creader.support.pulltorefresh.PullToRefreshListView
         android:id="@+id/news_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -11,8 +11,7 @@
         android:divider="#efefef"
         android:dividerHeight="0.5dp"
         android:fadingEdge="none"
-        android:smoothScrollbar="true"
-        android:visibility="gone" />
+        android:smoothScrollbar="true" />
 
     <TextView
         android:id="@+id/news_badnetwork"
@@ -20,12 +19,12 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
-        android:gravity="center"
         android:background="@android:color/transparent"
+        android:gravity="center"
         android:text="由于网络原因无法加载新闻，请稍后点此重试"
         android:textColor="#1d1d1d"
-        android:visibility="gone"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/news_progressbar"

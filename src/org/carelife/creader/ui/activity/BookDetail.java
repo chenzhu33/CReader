@@ -18,7 +18,6 @@ import org.carelife.creader.dao.SearchData;
 import org.carelife.creader.dao.UrlHelper;
 import org.carelife.creader.db.BookDao;
 import org.carelife.creader.ui.adapter.DetailGridAdapter;
-import org.carelife.creader.ui.component.MyDialogBuilder;
 import org.carelife.creader.util.AsynImageLoaderUtil;
 import org.carelife.creader.util.DownloadUtil;
 import org.carelife.creader.util.FileUtil;
@@ -27,8 +26,9 @@ import org.carelife.creader.util.UpdateUtil;
 import org.carelife.creader.util.XmlUtil;
 
 import org.carelife.creader.R;
+
+import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -41,8 +41,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -56,7 +57,6 @@ public class BookDetail extends Activity {
 
 	private final String TAG = "BookDetal";
 
-	private TextView title;
 	private TextView title2;
 	private TextView author;
 	private TextView type;
@@ -291,16 +291,17 @@ public class BookDetail extends Activity {
 		}
 	};
 
+	private ActionBar actionBar;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 		setContentView(R.layout.bookdetail);
 		sp = getSharedPreferences("sogounovel", MODE_PRIVATE);
 		edit = sp.edit();
-		for (int i = 0; i < UrlHelper.book_cate.length; i++) {
-			book_cates.put(UrlHelper.book_cate[i], UrlHelper.goto_data[i]);
+		
+		for (int i = 0; i < UrlHelper.book_cate[0].length; i++) {
+			book_cates.put(UrlHelper.book_cate[0][i], UrlHelper.goto_data[0][i]);
 		}
 
 		sData = (SearchData) this.getIntent().getParcelableExtra("SearchData");
@@ -309,9 +310,13 @@ public class BookDetail extends Activity {
 			this.finish();
 		}
 
+		actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionBar.setTitle(sData.getbookname());
+		
 		DU = new DownloadUtil();
 		bookdao = BookDao.getInstance(this);
-		title = (TextView) findViewById(R.id.detail_book_title);
 		title2 = (TextView) findViewById(R.id.detail_book_title2);
 		author = (TextView) findViewById(R.id.detail_book_author);
 		type = (TextView) findViewById(R.id.detail_book_type);
@@ -329,8 +334,6 @@ public class BookDetail extends Activity {
 		dialog.setMessage("数据加载中，请稍后。。。");  
 		dialog.setCancelable(true);
 		
-//		dialog = MyDialogBuilder.waitingDialog(BookDetail.this, "获取数据",
-//				"数据加载中，请稍后。。。");
 		dialog.setOnKeyListener(new OnKeyListener() {
 
 			public boolean onKey(DialogInterface dialog, int keyCode,
@@ -354,8 +357,6 @@ public class BookDetail extends Activity {
 				if (!isSpan) {
 					span.setBackgroundResource(R.drawable.span);
 
-					// description.setMaxLines(3);
-					// description.setText(desc);
 					if (desc.length() <= 70) {
 						description.setText(desc);
 					} else {
@@ -364,7 +365,6 @@ public class BookDetail extends Activity {
 					isSpan = true;
 				} else {
 					span.setBackgroundResource(R.drawable.shrink);
-					// description.setMaxLines(10);
 					description.setText(desc);
 					isSpan = false;
 				}
@@ -377,8 +377,6 @@ public class BookDetail extends Activity {
 				if (!isSpan) {
 					span.setBackgroundResource(R.drawable.span);
 
-					// description.setMaxLines(3);
-					// description.setText(desc);
 					if (desc.length() <= 70) {
 						description.setText(desc);
 					} else {
@@ -387,7 +385,6 @@ public class BookDetail extends Activity {
 					isSpan = true;
 				} else {
 					span.setBackgroundResource(R.drawable.shrink);
-					// description.setMaxLines(10);
 					description.setText(desc);
 					isSpan = false;
 				}
@@ -397,7 +394,6 @@ public class BookDetail extends Activity {
 		reader.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				// Intent intent = new Intent(BookDetail.this, );
 				dialog.show();
 				SaveBitmap(bitmap,book_name,author_name);
 				new Thread() {
@@ -457,7 +453,6 @@ public class BookDetail extends Activity {
 		book_name = temp_search.getbookname();
 		author_name = temp_search.getauthor_name();
 
-		title.setText(book_name);
 		title2.setText(book_name);
 		author.setText("作者：" + author_name);
 		type.setText("类型：" + temp_search.gettype());
@@ -545,4 +540,21 @@ public class BookDetail extends Activity {
 		}
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			BookDetail.this.finish();
+			break;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+		return true;
+	}
+	
 }

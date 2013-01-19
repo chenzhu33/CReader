@@ -4,22 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.carelife.creader.dao.RankData;
-import org.carelife.creader.dao.SearchData;
-import org.carelife.creader.dao.UrlHelper;
 import org.carelife.creader.util.AsynImageLoaderUtil;
-import org.carelife.creader.util.ToastUtil;
-import org.carelife.creader.util.XmlUtil;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnTouchListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,11 +25,6 @@ public class CateRankListAdapter extends BaseAdapter {
 	ProgressDialog dialog;
 	private HashMap<String, Bitmap> imageCache = new HashMap<String, Bitmap>();
 	private HashMap<String, ImageView> imageViews = new HashMap<String, ImageView>();
-	private String book_name;
-	private SearchData book_searchresult;
-
-	private Handler viewHandler;
-
 	final Handler handler = new Handler() {
 		public void handleMessage(Message message) {
 			switch (message.what) {
@@ -66,7 +53,6 @@ public class CateRankListAdapter extends BaseAdapter {
 			Handler viewHandler , ProgressDialog dialog) {
 		this.data = result;
 		this.context = context;
-		this.viewHandler = viewHandler;
 		this.dialog = dialog;
 	}
 

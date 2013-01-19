@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/search_button"
+        android:showAsAction="always"
+        android:title="@string/novel"/>
+    <item
+        android:id="@+id/menu_sidebar"
+        android:icon="@drawable/catalog"
+        android:showAsAction="always"
+        android:title="@string/novel"/>
+
+</menu>

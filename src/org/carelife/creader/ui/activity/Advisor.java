@@ -27,7 +27,6 @@ import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,9 +42,10 @@ public class Advisor extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 		setContentView(R.layout.advise);
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setTitle("意见反馈");
 
 		e1 = (EditText) findViewById(R.id.editText1);
 		e2 = (EditText) findViewById(R.id.editText2);
@@ -58,15 +58,17 @@ public class Advisor extends Activity {
 				final String msg = e1.getText().toString();
 				final String userinfo = e2.getText().toString();
 				if (null == msg || "".equals(msg.trim())) {
-					Toast.makeText(Advisor.this, "亲，反馈信息不能为空", Toast.LENGTH_SHORT)
-							.show();
+					Toast.makeText(Advisor.this, "亲，反馈信息不能为空",
+							Toast.LENGTH_SHORT).show();
 				} else {
 					Pattern pattern = Pattern.compile("[0-9]*");
 					if (null == userinfo || "".equals(userinfo.trim())) {
 						Toast.makeText(Advisor.this, "亲，联系方式不能为空",
 								Toast.LENGTH_SHORT).show();
-					} else if(!(pattern.matcher(userinfo).matches() || FileUtil.isEmail(userinfo))){
-						Toast.makeText(Advisor.this, "亲，电话号码或邮箱有错!", 500).show();  
+					} else if (!(pattern.matcher(userinfo).matches() || FileUtil
+							.isEmail(userinfo))) {
+						Toast.makeText(Advisor.this, "亲，电话号码或邮箱有错!", 500)
+								.show();
 					} else {
 						if (prgDialog == null)
 							prgDialog = new ProgressDialog(Advisor.this);

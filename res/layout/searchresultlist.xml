@@ -4,78 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white" >
 
-    <RelativeLayout
-        android:id="@+id/search_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/banner_only" >
-
-        <TextView
-            android:id="@+id/search_logo2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="搜索"
-            android:textColor="@android:color/white"
-            android:textSize="22sp" />
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/banner_blueline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_header"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner_blueline" />
-
-    <RelativeLayout
-        android:id="@+id/searchbar_layout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/search_area_bg"
-        android:gravity="center_horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp" >
-
-        <EditText
-            android:id="@+id/query_text2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="@drawable/search_area"
-            android:hint="查询书名、作者..."
-            android:paddingLeft="8dp"
-            android:singleLine="true"
-            android:textColorHint="#AAAAAA"
-            android:textSize="16dp" />
-
-        <ImageView
-            android:id="@+id/search_query_button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/query_text2"
-            android:layout_centerVertical="true"
-            android:src="@drawable/search_selector_2" />
-
-        <ImageButton
-            android:id="@+id/search_query_clear2"
-            android:layout_width="25dip"
-            android:layout_height="25dip"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="2dip"
-            android:layout_toLeftOf="@+id/search_query_button2"
-            android:src="@drawable/clear"
-            android:visibility="gone" />
-    </RelativeLayout>
-
     <ListView
         android:id="@+id/cate_rank_list2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/searchbar_layout2"
         android:cacheColorHint="#00000000"
         android:divider="#eeeeee"
         android:dividerHeight="0.5dp"

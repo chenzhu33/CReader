@@ -1,8 +1,5 @@
 package org.carelife.creader.ui.activity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.carelife.creader.db.BookDao;
 
 import org.carelife.creader.R;
@@ -15,8 +12,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewConfiguration;
-import android.view.Window;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -38,7 +33,6 @@ public class TcBookActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tcwebview);
 		bookdao = BookDao.getInstance(this);
 		l_bar = (LinearLayout) findViewById(R.id.tc_webview_progressbar);

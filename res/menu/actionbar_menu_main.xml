@@ -13,7 +13,10 @@
         android:id="@+id/menu_addbook"
         android:showAsAction="never"
         android:title="@string/addbook" />
-    
+    <item
+        android:id="@+id/menu_searchbook"
+        android:showAsAction="never"
+        android:title="@string/searchbook" />
     <item
         android:id="@+id/menu_settings"
         android:showAsAction="never"

@@ -5,52 +5,25 @@
     android:background="@android:color/white"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/update_title"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/ll01"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/banner_only" >
+        android:background="@drawable/news_tab_bg" >
 
-        <TextView
-            android:id="@+id/update_logo"
+        <CheckBox
+            android:id="@+id/checkall"
+            style="@style/MyCheckBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="自动追更"
-            android:textColor="@android:color/white"
-            android:textSize="22sp" />
-    </RelativeLayout>
-	
-    <ImageView
-        android:id="@+id/banner_blueline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/update_title"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner_blueline" />
-
-    <LinearLayout
-	    android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-	    android:background="@drawable/news_tab_bg"
-	    android:layout_below="@id/banner_blueline"
-	    android:id="@+id/ll01" 
-	    >
-	    <CheckBox
-        android:id="@+id/checkall"
-        style="@style/MyCheckBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/banner_blueline"
-        android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:text="全选"
-        android:textColor="#5c5c5c"
-        android:textSize="18sp" />
-	    
-	</LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="全选"
+            android:textColor="#5c5c5c"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/autoupdate_list"

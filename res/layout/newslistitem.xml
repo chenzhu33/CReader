@@ -26,7 +26,7 @@
         android:layout_toLeftOf="@id/news_list_pic"
         android:singleLine="true"
         android:text="暂无标题"
-        android:textColor="@color/list_title"
+        android:textColor="@drawable/list_text_title_selector"
         android:textSize="17sp" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_toLeftOf="@id/news_list_pic"
         android:lineSpacingMultiplier="1.2"
         android:text="暂无详情"
-        android:textColor="#949494"
+        android:textColor="@drawable/list_text_content_selector"
         android:textSize="14sp" />
 
 </RelativeLayout>

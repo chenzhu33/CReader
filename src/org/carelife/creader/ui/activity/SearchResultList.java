@@ -19,7 +19,9 @@ import org.carelife.creader.util.XmlUtil;
 
 import org.carelife.creader.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,22 +30,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 public class SearchResultList extends Activity implements OnScrollListener {
 	ListView rank_cate_list = null;
@@ -61,10 +60,6 @@ public class SearchResultList extends Activity implements OnScrollListener {
 	String searchstring;
 	Button back_bt;
 	LinearLayout progressbar;
-
-	EditText querytext;
-	ImageView search_button;
-	ImageButton clear_button;
 	InputMethodManager imm;
 	BookDao bookDao;
 
@@ -122,7 +117,6 @@ public class SearchResultList extends Activity implements OnScrollListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.searchresultlist);
 
 		sp = getSharedPreferences("sogounovel", MODE_PRIVATE);
@@ -130,98 +124,21 @@ public class SearchResultList extends Activity implements OnScrollListener {
 		fm = new FileUtil();
 		toast = ToastUtil.getInstance(this);
 
+        buildActionBarAndViewPagerTitles();
+		
 		progressbar = (LinearLayout) findViewById(R.id.rankcatelist_progressbar2);
 		progressbar.setVisibility(View.VISIBLE);
 
 		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		querytext = (EditText) findViewById(R.id.query_text2);
-		clear_button = (ImageButton) findViewById(R.id.search_query_clear2);
-		search_button = (ImageView) findViewById(R.id.search_query_button2);
 		bookDao = BookDao.getInstance(SearchResultList.this);
-
-		search_button.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-
-				String query_word = querytext.getText().toString().trim();
-				if (query_word.equals("")) {
-					return;
-				}
-				bookDao.insertHistory(query_word);
-				try {
-					query_word = URLEncoder.encode(query_word, "utf-8");
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				if (query_word.equals("")) {
-					return;
-				}
-				imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-				edit.putString("querystring", query_word);
-				edit.commit();
-				Intent intent = new Intent(SearchResultList.this,
-						SearchResultList.class);
-				SearchResultList.this.finish();
-				startActivity(intent);
-			}
-		});
-
-		clear_button.setOnClickListener(new OnClickListener() {
-
-			public void onClick(View v) {
-				querytext.setText("");
-			}
-		});
-
-		querytext.addTextChangedListener(new TextWatcher() {
-
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-				if (!querytext.getText().toString().trim().equals("")) {
-					clear_button.setVisibility(View.VISIBLE);
-				} else {
-					clear_button.setVisibility(View.GONE);
-				}
-			}
-		});
 
 		searchstring = sp.getString("querystring", "");
 		if (searchstring.equals("")) {
 			toast.setText("亲，查询词为空~");
 			SearchResultList.this.finish();
 		}
-		String show_string = searchstring;
-		try {
-			show_string = URLDecoder.decode(show_string,"utf-8");
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
-		}
-		querytext.setText(show_string);
 		
 		rank_cate_list = (ListView) findViewById(R.id.cate_rank_list2);
-		
-//		//反射更改快速下拉条
-//				try { 
-//				    Field f = AbsListView.class.getDeclaredField("mFastScroller"); 
-//				    f.setAccessible(true); 
-//				    Object o=f.get(rank_cate_list); 
-//				    f=f.getType().getDeclaredField("mThumbDrawable"); 
-//				    f.setAccessible(true); 
-//				    Drawable drawable=(Drawable) f.get(o); 
-//				    drawable= getResources().getDrawable(R.drawable.scroller);
-//				    f.set(o,drawable); 
-////				    Toast.makeText(this, f.getType().getName(), 1000).show(); 
-//				} catch (Exception e) { 
-//				    throw new RuntimeException(e); 
-//				}
 
 		new Thread() {
 			public void run() {
@@ -237,25 +154,88 @@ public class SearchResultList extends Activity implements OnScrollListener {
 		}.start();
 
 	}
+	
+	private void buildActionBarAndViewPagerTitles() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(true);
+
+        actionBar.setTitle(getString(R.string.search));
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    }
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu_searchmainactivity, menu);
+        final SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        searchView.setIconifiedByDefault(false);
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setLayoutParams(new LayoutParams(getResources().getDisplayMetrics().widthPixels / 4 * 3, LayoutParams.WRAP_CONTENT));
+		String show_string = searchstring;
+		try {
+			show_string = URLDecoder.decode(show_string,"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+        searchView.setQuery(show_string, false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+				String query_word = query.trim();
+				if (query_word.equals("")) {
+					return true;
+				}
+				bookDao.insertHistory(query_word);
+				try {
+					query_word = URLEncoder.encode(query_word, "utf-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				if (query_word.equals("")) {
+					return true;
+				}
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive())
+                    imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+				
+				edit.putString("querystring", query_word);
+				edit.commit();
+				Intent intent = new Intent(SearchResultList.this,
+						SearchResultList.class);
+				SearchResultList.this.finish();
+				startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                SearchResultList.this.finish();
+            	return true;
+        }
+
+        return true;
+    }
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-		if (keyCode == KeyEvent.KEYCODE_MENU) {
-
-			return true;
-		}
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			SearchResultList.this.finish();
-			return true;
-		}
-
-		return super.onKeyDown(keyCode, event);
 	}
 
 	private void invisibleFooter() {
@@ -295,7 +275,7 @@ public class SearchResultList extends Activity implements OnScrollListener {
 							xml_data = XmlUtil.getXML(UrlHelper.searchurl, searchstring,
 									"&p=" + mCount +"&fixpos=0", 0);
 						} catch (IOException e) {
-							ToastUtil.getInstance(SearchResultList.this).setText("亲，您的网络不给力啊，稍后再试吧...");
+							handler.sendEmptyMessage(-1);
 							e.printStackTrace();
 						}
 						handler.sendEmptyMessage(1);

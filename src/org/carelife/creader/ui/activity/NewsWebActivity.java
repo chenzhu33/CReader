@@ -1,18 +1,12 @@
 package org.carelife.creader.ui.activity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.carelife.creader.R;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
@@ -31,7 +25,6 @@ public class NewsWebActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.tcwebview);
 		l_bar = (LinearLayout) findViewById(R.id.tc_webview_progressbar);
 

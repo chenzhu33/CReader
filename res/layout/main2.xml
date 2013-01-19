@@ -6,12 +6,17 @@
     android:background="@android:color/transparent"
     android:orientation="vertical" >
 
+    <com.viewpagerindicator.TabPageIndicator
+        android:id="@+id/indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/news_tab_bg" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1.0"
         android:background="@android:color/white"
         android:flipInterval="30"
         android:persistentDrawingCache="animation" />

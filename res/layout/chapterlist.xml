@@ -6,62 +6,15 @@
     android:background="@android:color/white"
     android:visibility="visible" >
 
-    <RelativeLayout
-        android:id="@+id/chapterlist_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/banner_only" >
-        <ProgressBar 
-	        android:layout_width="30dip"
-	        android:layout_height="30dip"
-	        android:id="@+id/refreash_progress"
-	        android:visibility="gone"
-	        android:layout_centerVertical="true"
-	        android:layout_alignParentLeft="true"
-        />
-        
-
-        <TextView
-            android:id="@+id/shelf_image_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="0"
-            android:shadowRadius="1"
-            android:text="目录"
-            android:textColor="#e1e1e1"
-            android:textSize="22sp" />
-    </RelativeLayout>
-    
-    <ImageView
-        android:id="@+id/banner_blueline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/chapterlist_title"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner_blueline" />
-
-    <ImageView
-        android:id="@+id/banner_blueline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/chapterlist_title"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner_blueline" />
-
     <ListView
         android:id="@+id/chapter_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/banner_blueline"
         android:cacheColorHint="#00000000"
         android:divider="#ffeeeeee"
         android:dividerHeight="0.5dip"
-        android:visibility="gone"
         android:fastScrollAlwaysVisible="true"
-        android:fastScrollEnabled="true" />
+        android:fastScrollEnabled="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

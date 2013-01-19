@@ -16,6 +16,7 @@ import org.carelife.creader.util.FileUtil;
 import org.carelife.creader.util.NetworkUtil;
 import org.carelife.creader.util.ToastUtil;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -32,20 +33,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ImageView.ScaleType;
-import android.widget.RelativeLayout.LayoutParams;
 
 public class ChapterList extends Activity {
 	ListView book_list = null;
@@ -71,23 +70,20 @@ public class ChapterList extends Activity {
 	BookBasicBean book;
 	int book_mark = 0;
 	boolean from_flag;
-	ProgressBar refresh_dialog;
 
 	private Handler handler = new Handler() {
 		@Override
-		public void handleMessage(Message msg) { 
+		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			switch (msg.what) {
 			case -1:
-				if(dialog.isShowing()){
+				if (dialog.isShowing()) {
 					dialog.dismiss();
 				}
 				ToastUtil.getInstance(ChapterList.this).setText(
 						"亲，您的网络不给力啊，稍后再试吧...");
 				break;
 			case -2:
-				// dialog2.dismiss();
-				refresh_dialog.setVisibility(View.GONE);
 				ToastUtil.getInstance(ChapterList.this).setText(
 						"亲，您的网络不给力啊，稍后再试吧...");
 				break;
@@ -98,12 +94,9 @@ public class ChapterList extends Activity {
 				}
 
 				if (chapter_list == null) {
-					// 罪恶之城
-					if(dialog.isShowing()){
+					if (dialog.isShowing()) {
 						dialog.dismiss();
 					}
-					// dialog2.dismiss();
-					refresh_dialog.setVisibility(View.GONE);
 					book_list.setVisibility(View.VISIBLE);
 					toast.setText("暂无数据,稍后再试吧...");
 					break;
@@ -120,17 +113,16 @@ public class ChapterList extends Activity {
 				book_list.setSelection(book_mark);
 
 				book_list.setVisibility(View.VISIBLE);
-				if(dialog.isShowing()){
+				if (dialog.isShowing()) {
 					dialog.dismiss();
 				}
-				// dialog2.dismiss();
-				refresh_dialog.setVisibility(View.GONE);
+
 				break;
 			case 1:
 
 				if (chapter_list == null) {
 					// 罪恶之城
-					if(dialog.isShowing()){
+					if (dialog.isShowing()) {
 						dialog.dismiss();
 					}
 					book_list.setVisibility(View.VISIBLE);
@@ -144,21 +136,10 @@ public class ChapterList extends Activity {
 
 				book_Adapter = new BookAdapter(ChapterList.this, chapter_list);
 				book_list.setAdapter(book_Adapter);
-
-				// book_list.smoothScrollToPosition(book_mark);
 				book_list.setSelection(book_mark);
 				book_list.setVisibility(View.VISIBLE);
 
-				// dialog2.show();
-				refresh_dialog.setVisibility(View.VISIBLE);
 				toast.setText("更新目录");
-
-				// if(chapter_list == null){
-				//
-				// }else{
-				// Message message = handler.obtainMessage(0, chapter_list);
-				// handler.sendMessage(message);
-				// }
 
 				new Thread() {
 					public void run() {
@@ -178,8 +159,6 @@ public class ChapterList extends Activity {
 								handler.sendMessage(message);
 							} else {
 								user_force_close_update = 0;
-								// dialog2.dismiss();
-								refresh_dialog.setVisibility(View.GONE);
 							}
 						} catch (Exception e) {
 							handler.sendEmptyMessage(-2);
@@ -193,30 +172,14 @@ public class ChapterList extends Activity {
 			}
 		}
 	};
+	private ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// this.requestWindowFeature(Window.FEATURE_NO_TITLE); // 设置activity无标题
 		setContentView(R.layout.chapterlist);
 
 		book_list = (ListView) findViewById(R.id.chapter_listview);
-
-		// // 反射更改快速下拉条
-		// try {
-		// Field f = AbsListView.class.getDeclaredField("mFastScroller");
-		// f.setAccessible(true);
-		// Object o = f.get(book_list);
-		// f = f.getType().getDeclaredField("mThumbDrawable");
-		// f.setAccessible(true);
-		// Drawable drawable = (Drawable) f.get(o);
-		// drawable = getResources().getDrawable(R.drawable.scroller);
-		// f.set(o, drawable);
-		// // Toast.makeText(this, f.getType().getName(), 1000).show();
-		// } catch (Exception e) {
-		// throw new RuntimeException(e);
-		// }
-
 		book_Adapter = new BookAdapter(ChapterList.this, null);
 		book_list.setAdapter(book_Adapter);
 		book_list.setVisibility(View.VISIBLE);
@@ -224,13 +187,18 @@ public class ChapterList extends Activity {
 		toast = ToastUtil.getInstance(this);
 		sp = getSharedPreferences("sogounovel", MODE_PRIVATE);
 		edit = sp.edit();
+
+		actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionBar.setTitle("目录");
+
 		dialog = new ProgressDialog(ChapterList.this);
 		dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		dialog.setTitle("获取目录");
 		dialog.setMessage("数据加载中，请稍后。。。");
 		dialog.setIndeterminate(false);
-		// dialog = MyDialogBuilder.waitingDialog(ChapterList.this, "获取目录",
-		// "数据加载中，请稍后。。。");
+
 		dialog.setOnKeyListener(new OnKeyListener() {
 
 			public boolean onKey(DialogInterface dialog, int keyCode,
@@ -255,33 +223,6 @@ public class ChapterList extends Activity {
 		});
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(true);
-		refresh_dialog = (ProgressBar) findViewById(R.id.refreash_progress);
-		refresh_dialog.setVisibility(View.GONE);
-		// dialog2 = new ProgressDialog(ChapterList.this);
-		// dialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		// dialog2.setTitle("检查目录更新");
-		// dialog2.setMessage("更新目录中，请稍后。。。");
-		// dialog2.setIndeterminate(false);
-		// dialog2.setCancelable(true);
-		// dialog2.setCanceledOnTouchOutside(true);
-		// //
-		// // dialog2 = MyDialogBuilder.waitingDialog(ChapterList.this,
-		// "检查目录更新",
-		// // "更新目录中，请稍后。。。");
-		// dialog2.setOnKeyListener(new OnKeyListener() {
-		//
-		// public boolean onKey(DialogInterface dialog, int keyCode,
-		// KeyEvent event) {
-		// if (keyCode == KeyEvent.KEYCODE_BACK) {
-		// user_force_close_update = 1;
-		// return false;
-		// }
-		//
-		// return false;
-		// }
-		// });
-		// dialog2.setCanceledOnTouchOutside(false);
-		// dialog2.setCancelable(true);
 		LayoutInflater lay = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		listaddview = lay.inflate(R.layout.chapter_force_update, null);
@@ -309,7 +250,7 @@ public class ChapterList extends Activity {
 								handler.sendMessage(message);
 							} else {
 								user_force_close = 0;
-								if(dialog.isShowing()){
+								if (dialog.isShowing()) {
 									dialog.dismiss();
 								}
 							}
@@ -376,8 +317,6 @@ public class ChapterList extends Activity {
 				dialog.setMessage("无网络连接，读取本地缓存");
 				dialog.setIndeterminate(false);
 				dialog.setCancelable(true);
-				// dialog = MyDialogBuilder.waitingDialog(ChapterList.this,
-				// "获取目录", "无网络连接，读取本地缓存");
 				dialog.show();
 
 				chapter_list = bd.getChapter_list(book_name, author_name);
@@ -407,28 +346,29 @@ public class ChapterList extends Activity {
 	}
 
 	@Override
-	protected void onStop() {
-		super.onStop();
-		if(dialog.isShowing()){
-			dialog.dismiss();
-		}
-		ChapterList.this.finish();
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (refresh_dialog.getVisibility() == View.VISIBLE) {
-				user_force_close_update = 1;
-				toast.setText("已取消更新目录", 2000);
-				refresh_dialog.setVisibility(View.GONE);
-				return true;
-			}
-
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			ChapterList.this.finish();
+			break;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
+		return true;
+	}
 
-		return super.onKeyDown(keyCode, event);
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if (dialog.isShowing()) {
+			dialog.dismiss();
+		}
+		ChapterList.this.finish();
 	}
 
 	public class BookAdapter extends BaseAdapter {
@@ -469,19 +409,18 @@ public class ChapterList extends Activity {
 						.findViewById(R.id.chapter_title);
 				holder.mark = (ImageView) convertView
 						.findViewById(R.id.chapter_mark);
-				// holder.info =
-				// (TextView)convertView.findViewById(R.id.book_info);
+
 				convertView.setTag(holder);
 			} else {
 				holder = (HolderView) convertView.getTag();
 			}
 
-
 			if (book_mark == position) {
 				holder.layout.setBackgroundResource(R.drawable.bookmark_bg);
 				holder.mark.setVisibility(View.VISIBLE);
 			} else {
-				holder.layout.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
+				holder.layout
+						.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
 				holder.mark.setVisibility(View.GONE);
 			}
 
@@ -501,7 +440,8 @@ public class ChapterList extends Activity {
 						v.setBackgroundResource(R.drawable.item_selected);
 						t.setTextColor(Color.WHITE);
 					} else if (event.getAction() == MotionEvent.ACTION_UP) {
-						t.setTextColor(getResources().getColor(R.color.textcolor63));
+						t.setTextColor(getResources().getColor(
+								R.color.textcolor63));
 						if (book_mark == position) {
 							v.setBackgroundResource(R.drawable.bookmark_bg);
 							mark.setVisibility(View.VISIBLE);
@@ -520,15 +460,18 @@ public class ChapterList extends Activity {
 									SogouNovelActivity.class);
 							ChapterBasicBean temp_chapter = chapter_list
 									.get(position);
-							BookBasicBean temp_book = new BookBasicBean(temp_chapter
-									.getBook_name(), temp_chapter
-									.getAuthor_name(), temp_chapter
-									.getChapter_md5(), temp_chapter
-									.getChapter_index());
+							BookBasicBean temp_book = new BookBasicBean(
+									temp_chapter.getBook_name(), temp_chapter
+											.getAuthor_name(), temp_chapter
+											.getChapter_md5(), temp_chapter
+											.getChapter_index());
 
 							temp_book.setIs_loc(1);
 							temp_book.setBegin_buf(0);
-							temp_book.setPic_path(FileUtil.new_dir + FileUtil.cheak_string(book_name) + "_" + FileUtil.cheak_string(author_name) + "/" + UrlHelper.cover_string);
+							temp_book.setPic_path(FileUtil.new_dir
+									+ FileUtil.cheak_string(book_name) + "_"
+									+ FileUtil.cheak_string(author_name) + "/"
+									+ UrlHelper.cover_string);
 							bd.add_book(temp_book);
 
 							intent.putExtra("book_info", temp_book);
@@ -539,11 +482,11 @@ public class ChapterList extends Activity {
 
 							ChapterBasicBean temp_chapter = chapter_list
 									.get(position);
-							BookBasicBean temp_book = new BookBasicBean(temp_chapter
-									.getBook_name(), temp_chapter
-									.getAuthor_name(), temp_chapter
-									.getChapter_md5(), temp_chapter
-									.getChapter_index());
+							BookBasicBean temp_book = new BookBasicBean(
+									temp_chapter.getBook_name(), temp_chapter
+											.getAuthor_name(), temp_chapter
+											.getChapter_md5(), temp_chapter
+											.getChapter_index());
 							edit.putInt("change_chapter", 1);
 							edit.commit();
 							intent.putExtra("book_info", temp_book);
@@ -552,7 +495,8 @@ public class ChapterList extends Activity {
 						startActivity(intent);
 
 					} else {
-						t.setTextColor(getResources().getColor(R.color.textcolor63));
+						t.setTextColor(getResources().getColor(
+								R.color.textcolor63));
 						if (book_mark == position) {
 							v.setBackgroundResource(R.drawable.bookmark_bg);
 							mark.setVisibility(View.VISIBLE);
