@@ -256,18 +256,14 @@ public class BookDetail extends Activity {
 							}
 						}.start();
 
-						edit.putString("webview_book_name", book_name_web_view);
-						edit.putString("webview_author_name",
-								author_name_web_view);
-						edit.putString("webview_url", UrlHelper.tc_url
-								+ temp_tc_url);
-						edit.commit();
 						if(dialog.isShowing()){
 							dialog.dismiss();
 						}
 						Intent intent2 = new Intent(BookDetail.this,
-								TcBookActivity.class);
+								WebViewActivity.class);
 						intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						intent2.putExtra("url", UrlHelper.tc_url + temp_tc_url);
+
 						BookDetail.this.startActivity(intent2);
 					} else {
 						initData(temp_result);

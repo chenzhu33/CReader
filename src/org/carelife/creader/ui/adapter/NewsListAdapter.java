@@ -33,18 +33,15 @@ public class NewsListAdapter extends BaseAdapter {
 					imageViews.get(url).setImageBitmap(imageCache.get(url));
 				}
 				break;
-
 			case 1:
 				if (message.obj != null) {
 					String url = (String) message.obj;
 					imageViews.get(url).setImageBitmap(imageCache.get(url));
 				}
 				break;
-
 			default:
 				break;
 			}
-
 		}
 	};
 

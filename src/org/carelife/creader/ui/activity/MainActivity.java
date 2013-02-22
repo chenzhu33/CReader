@@ -53,7 +53,6 @@ public class MainActivity extends FragmentActivity {
 		pager.setOffscreenPageLimit(5);
 		pager.setAdapter(adapter);
 		pager.setCurrentItem(0);
-		//pager.setOnPageChangeListener(pageChangeListener);
 
 		indicator = (TabPageIndicator) findViewById(R.id.indicator);
 		indicator.setViewPager(pager);

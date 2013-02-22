@@ -216,15 +216,10 @@ public class MainView implements OnScrollListener {
 								}
 							}
 						}.start();
-
-						edit.putString("webview_book_name", book_name);
-						edit.putString("webview_author_name", author_name);
-						edit.putString("webview_url", UrlHelper.tc_url
-								+ temp_tc_url);
-						edit.commit();
 						Intent intent = new Intent(context,
-								TcBookActivity.class);
+								WebViewActivity.class);
 						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						intent.putExtra("url", UrlHelper.tc_url + temp_tc_url);
 						dialog.dismiss();
 						context.startActivity(intent);
 					} else {

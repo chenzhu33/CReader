@@ -9,7 +9,7 @@ import org.carelife.creader.dao.UrlHelper;
 import org.carelife.creader.support.pulltorefresh.PullToRefreshBase;
 import org.carelife.creader.support.pulltorefresh.PullToRefreshBase.OnRefreshListener;
 import org.carelife.creader.support.pulltorefresh.PullToRefreshListView;
-import org.carelife.creader.ui.activity.NewsWebActivity;
+import org.carelife.creader.ui.activity.WebViewActivity;
 import org.carelife.creader.ui.adapter.NewsListAdapter;
 import org.carelife.creader.util.NetworkUtil;
 import org.carelife.creader.util.ToastUtil;
@@ -81,7 +81,6 @@ public class NewsFragment extends Fragment {
 								.setLastUpdatedLabel(label);
 
 						// Do work to refresh the list here.
-						adapterData.clear();
 						new GetDataTask().execute(0);
 						new GetDataTask().execute(1);
 						new GetDataTask().execute(2);
@@ -99,14 +98,14 @@ public class NewsFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				if(null == adapterData.get(arg2).getLink()) {
+				if(null == adapterData.get((int)arg3).getLink()) {
 					toast.setText("此条无记录，抱歉啊。。.");
 					return;
 				}
 				if(NetworkUtil.checkWifiAndGPRS(context)){
-					Intent intent = new Intent(context, NewsWebActivity.class);
+					Intent intent = new Intent(context, WebViewActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.putExtra("url", adapterData.get(arg2).getLink());
+					intent.putExtra("url", adapterData.get((int)arg3).getLink());
 					context.startActivity(intent);
 				}else{
 					toast.setText("亲，您的网络不给力啊，稍后再试吧...");
@@ -126,7 +125,6 @@ public class NewsFragment extends Fragment {
 				if (NetworkUtil.checkWifiAndGPRS(getActivity())) {
 					progressbar.setVisibility(View.VISIBLE);
 					badNet.setVisibility(View.INVISIBLE);
-					adapterData.clear();
 					new GetDataTask().execute(0);
 					new GetDataTask().execute(1);
 					new GetDataTask().execute(2);
@@ -136,7 +134,6 @@ public class NewsFragment extends Fragment {
 
 			}
 		});
-		adapterData.clear();
 		new GetDataTask().execute(0);
 		new GetDataTask().execute(1);
 		new GetDataTask().execute(2);
@@ -152,6 +149,9 @@ public class NewsFragment extends Fragment {
 			try {
 				tmp = XmlUtil.getNewsXML(UrlHelper.newsurl[index][params[0]]);
 				if (tmp != null && tmp.size() != 0) {
+					RssData r = new RssData();
+					r.setAuthor(Integer.toString(params[0]));
+					tmp.add(r);
 					return tmp;
 				}
 			} catch (IOException e) {
@@ -171,6 +171,11 @@ public class NewsFragment extends Fragment {
 				badNet.setVisibility(View.INVISIBLE);
 				progressbar.setVisibility(View.GONE);
 				mPullRefreshListView.setVisibility(View.VISIBLE);
+				int index = data.size()-1;
+				RssData r = data.get(index);
+				if(r.getAuthor().equals("0"))
+					adapterData.clear();
+				data.remove(index);
 				adapterData.addAll(data);
 				lAdapter.notifyDataSetChanged();
 			}

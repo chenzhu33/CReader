@@ -8,23 +8,21 @@ import org.carelife.creader.dao.UrlHelper;
 import org.carelife.creader.db.BookDao;
 import org.carelife.creader.ui.activity.BookStoreActivity;
 import org.carelife.creader.ui.activity.SogouNovelActivityPager;
-import org.carelife.creader.ui.activity.TcBookActivity;
+import org.carelife.creader.ui.activity.WebViewActivity;
 import org.carelife.creader.ui.adapter.BookGridAdapter;
 import org.carelife.creader.ui.component.IntroduceDialog;
 import org.carelife.creader.util.FileUtil;
 import org.carelife.creader.util.UpdateUtil;
-
 import org.carelife.creader.R;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,8 +40,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 public class NovelFragment extends Fragment {
 
 	private List<String> book_update_data = new ArrayList<String>();
-	private SharedPreferences sp;
-	private Editor edit;
 	private BookDao bd;
 	private GridView gridview;
 	private BookGridAdapter bookGridAdapter;
@@ -56,15 +52,14 @@ public class NovelFragment extends Fragment {
 		NovelFragment f = new NovelFragment();
 		return f;
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = getActivity();
 		bd = BookDao.getInstance(context);
 		bd.open();
-		sp = context.getSharedPreferences("sogounovel", Context.MODE_PRIVATE);
-		edit = sp.edit();
+		context.getSharedPreferences("sogounovel", Context.MODE_PRIVATE);
 		fm = new FileUtil();
 
 	}
@@ -89,33 +84,16 @@ public class NovelFragment extends Fragment {
 
 					if (basic_list.get(position).getIs_loc() != 1) {
 
-						edit.putString("webview_url", UrlHelper.tc_url
-								+ basic_list.get(position).getChapter_md5());
-						edit.commit();
-
 						bd.update_book_time(basic_list.get(position)
 								.getBook_name(), basic_list.get(position)
 								.getAuthor_name());
 						bd.del_update(basic_list.get(position));
-						// 更新非本地库最后章节
-						new Thread() {
-							public void run() {
-								try {
-									String temp_max_chapter = UpdateUtil
-											.cheak_maxchaptercode(
-													context,
-													basic_list.get(position)
-															.getBook_name());
-									basic_list.get(position).setMax_md5(
-											temp_max_chapter);
-									bd.insert_maxmd5(basic_list.get(position));
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						}.start();
+						new GetDataTask().execute(position);
 						Intent intent = new Intent(context,
-								TcBookActivity.class);
+								WebViewActivity.class);
+						intent.putExtra("url", UrlHelper.tc_url
+								+ basic_list.get(position).getChapter_md5());
+
 						NovelFragment.this.startActivity(intent);
 
 					} else {
@@ -129,8 +107,7 @@ public class NovelFragment extends Fragment {
 
 				} else if (basic_list.get(position).getBook_name()
 						.equals("add_a_book")) {
-					Intent intent = new Intent(context,
-							BookStoreActivity.class);
+					Intent intent = new Intent(context, BookStoreActivity.class);
 					NovelFragment.this.startActivity(intent);
 				}
 			}
@@ -239,7 +216,30 @@ public class NovelFragment extends Fragment {
 		});
 		return v;
 	}
-	
+
+	private class GetDataTask extends AsyncTask<Integer, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Integer... params) {
+			String[] temp_max_chapter = new String[2];
+			try {
+				temp_max_chapter[0] = UpdateUtil.cheak_maxchaptercode(context,
+						basic_list.get(params[0]).getBook_name());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			temp_max_chapter[1] = params[0].toString();
+			return temp_max_chapter;
+		}
+
+		@Override
+		protected void onPostExecute(String[] data) {
+			basic_list.get(Integer.parseInt(data[1])).setMax_md5(data[0]);
+			bd.insert_maxmd5(basic_list.get(Integer.parseInt(data[1])));
+			super.onPostExecute(data);
+		}
+	}
+
 	@Override
 	public void onResume() {
 		super.onResume();

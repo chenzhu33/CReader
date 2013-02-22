@@ -19,8 +19,6 @@ import org.carelife.creader.util.UpdateUtil;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
@@ -36,16 +34,13 @@ import android.widget.TextView;
 
 import org.carelife.creader.R;
 import org.carelife.creader.ui.activity.BookDetail;
-import org.carelife.creader.ui.activity.TcBookActivity;
+import org.carelife.creader.ui.activity.WebViewActivity;
 
 public class SearchResultAdapter extends BaseAdapter {
 	Context context;
 	List<SearchData> data;
 	private HashMap<String, Bitmap> imageCache = new HashMap<String, Bitmap>();
 	private HashMap<String, ImageView> imageViews = new HashMap<String, ImageView>();
-
-	private SharedPreferences sp;
-	private Editor edit;
 
 	final Handler handler = new Handler() {
 		public void handleMessage(Message message) {
@@ -64,8 +59,7 @@ public class SearchResultAdapter extends BaseAdapter {
 	public SearchResultAdapter(Context context, List<SearchData> result) {
 		this.data = result;
 		this.context = context;
-		sp = context.getSharedPreferences("sogounovel", Context.MODE_PRIVATE);
-		edit = sp.edit();
+		context.getSharedPreferences("sogounovel", Context.MODE_PRIVATE);
 		bookdao = BookDao.getInstance(context);
 	}
 
@@ -140,8 +134,10 @@ public class SearchResultAdapter extends BaseAdapter {
 			holder.desc.setText("简介：" + data.get(position).getdesc());
 		}
 
-		//holder.layout.setBackgroundColor(Color.parseColor(ConstData.backgroundColor[position % 2]));
-		holder.layout.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
+		// holder.layout.setBackgroundColor(Color.parseColor(ConstData.backgroundColor[position
+		// % 2]));
+		holder.layout
+				.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
 
 		holder.layout.setOnTouchListener(new OnTouchListener() {
 
@@ -161,9 +157,12 @@ public class SearchResultAdapter extends BaseAdapter {
 
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					v.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
-					title.setTextColor(context.getResources().getColor(R.color.list_title));
-					author.setTextColor(context.getResources().getColor(R.color.list_content));
-					desc.setTextColor(context.getResources().getColor(R.color.list_content));
+					title.setTextColor(context.getResources().getColor(
+							R.color.list_title));
+					author.setTextColor(context.getResources().getColor(
+							R.color.list_content));
+					desc.setTextColor(context.getResources().getColor(
+							R.color.list_content));
 
 					if (position >= data.size()) {
 						ToastUtil.getInstance(context).setText("亲底下没了啊");
@@ -177,44 +176,56 @@ public class SearchResultAdapter extends BaseAdapter {
 						e.printStackTrace();
 					}
 					if (data.get(position).getloc() != 1) {
-						
-						//非本地存储书籍入库
+
+						// 非本地存储书籍入库
 						book_name = data.get(position).getbookname();
 						author_name = data.get(position).getauthor_name();
-						
+
 						new Thread() {
 
 							public void run() {
 								try {
-									SaveBitmap(AsynImageLoaderUtil.loadImageFromNet_throw(data.get(position).getpicurl()));
-									book = new BookBasicBean(book_name,author_name,null);
+									SaveBitmap(AsynImageLoaderUtil
+											.loadImageFromNet_throw(data.get(
+													position).getpicurl()));
+									book = new BookBasicBean(book_name,
+											author_name, null);
 									book.setIs_loc(data.get(position).getloc());
-									book.setChapter_md5(UrlHelper.tc_url + temp_tc_url);
-									book.setPic_path(FileUtil.new_dir + FileUtil.cheak_string(book_name) + "_" + FileUtil.cheak_string(author_name) +"/" + UrlHelper.cover_string);
+									book.setChapter_md5(UrlHelper.tc_url
+											+ temp_tc_url);
+									book.setPic_path(FileUtil.new_dir
+											+ FileUtil.cheak_string(book_name)
+											+ "_"
+											+ FileUtil
+													.cheak_string(author_name)
+											+ "/" + UrlHelper.cover_string);
 									bookdao.add_book(book);
-									String temp_max_chapter = UpdateUtil.cheak_maxchaptercode(context, book_name);
+									String temp_max_chapter = UpdateUtil
+											.cheak_maxchaptercode(context,
+													book_name);
 									book.setMax_md5(temp_max_chapter);
 								} catch (IOException e) {
-									book = new BookBasicBean(book_name,author_name,null);
+									book = new BookBasicBean(book_name,
+											author_name, null);
 									book.setIs_loc(data.get(position).getloc());
-									book.setChapter_md5(UrlHelper.tc_url + temp_tc_url);
+									book.setChapter_md5(UrlHelper.tc_url
+											+ temp_tc_url);
 									bookdao.add_book(book);
-									String temp_max_chapter = UpdateUtil.cheak_maxchaptercode(context, book_name);
+									String temp_max_chapter = UpdateUtil
+											.cheak_maxchaptercode(context,
+													book_name);
 									book.setMax_md5(temp_max_chapter);
 									e.printStackTrace();
-								} finally{
+								} finally {
 									bookdao.insert_maxmd5(book);
 								}
 							}
 						}.start();
-						
-						edit.putString("webview_book_name", book_name);
-						edit.putString("webview_author_name",author_name);
-						edit.putString("webview_url", UrlHelper.tc_url
-								+ temp_tc_url);
-						edit.commit();
+
 						Intent intent = new Intent(context,
-								TcBookActivity.class);
+								WebViewActivity.class);
+						intent.putExtra("url", UrlHelper.tc_url + temp_tc_url);
+
 						context.startActivity(intent);
 					} else {
 						Intent intent = new Intent(context, BookDetail.class);
@@ -223,9 +234,12 @@ public class SearchResultAdapter extends BaseAdapter {
 					}
 				} else if (event.getAction() != MotionEvent.ACTION_MOVE) {
 					v.setBackgroundResource(UrlHelper.backgroundColor[position % 2]);
-					title.setTextColor(context.getResources().getColor(R.color.list_title));
-					author.setTextColor(context.getResources().getColor(R.color.list_content));
-					desc.setTextColor(context.getResources().getColor(R.color.list_content));
+					title.setTextColor(context.getResources().getColor(
+							R.color.list_title));
+					author.setTextColor(context.getResources().getColor(
+							R.color.list_content));
+					desc.setTextColor(context.getResources().getColor(
+							R.color.list_content));
 
 				}
 				return true;
@@ -244,26 +258,28 @@ public class SearchResultAdapter extends BaseAdapter {
 		TextView desc;
 
 	}
-	
-	
-	private void SaveBitmap(Bitmap bmp){
-//		Bitmap bitmap = Bitmap.createBitmap(800, 600, Config.ARGB_8888);  
-//		Canvas canvas = new Canvas(bitmap);
-//		//加载背景图片
-//		Bitmap bmps = BitmapFactory.decodeResource(getResources(), R.drawable.playerbackground);
-//		canvas.drawBitmap(bmps, 0, 0, null);
-//		//加载要保存的画面
-//		canvas.drawBitmap(bmp, 10, 100, null);
-//		//保存全部图层
-//		canvas.save(Canvas.ALL_SAVE_FLAG);
-//		canvas.restore();
-		//存储路径
-		File file = new File(FileUtil.new_dir + FileUtil.cheak_string(book_name) + "_" + FileUtil.cheak_string(author_name));
-		if(!file.exists()){
+
+	private void SaveBitmap(Bitmap bmp) {
+		// Bitmap bitmap = Bitmap.createBitmap(800, 600, Config.ARGB_8888);
+		// Canvas canvas = new Canvas(bitmap);
+		// //加载背景图片
+		// Bitmap bmps = BitmapFactory.decodeResource(getResources(),
+		// R.drawable.playerbackground);
+		// canvas.drawBitmap(bmps, 0, 0, null);
+		// //加载要保存的画面
+		// canvas.drawBitmap(bmp, 10, 100, null);
+		// //保存全部图层
+		// canvas.save(Canvas.ALL_SAVE_FLAG);
+		// canvas.restore();
+		// 存储路径
+		File file = new File(FileUtil.new_dir
+				+ FileUtil.cheak_string(book_name) + "_"
+				+ FileUtil.cheak_string(author_name));
+		if (!file.exists()) {
 			file.mkdirs();
 		}
-		File file_temp = new File(file.getPath()+ "/" + UrlHelper.cover_string);
-		if(!file_temp.exists()){
+		File file_temp = new File(file.getPath() + "/" + UrlHelper.cover_string);
+		if (!file_temp.exists()) {
 			try {
 				file_temp.createNewFile();
 			} catch (IOException e) {
@@ -271,14 +287,16 @@ public class SearchResultAdapter extends BaseAdapter {
 				e.printStackTrace();
 			}
 		}
-			try {
-				FileOutputStream fileOutputStream = new FileOutputStream(file_temp.getPath());
-				bmp.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-				fileOutputStream.close();
-				System.out.println("saveBmp is here:"+file.getPath()+ "/" + UrlHelper.cover_string);
-			} catch (Exception e) {
-						e.printStackTrace();
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream(
+					file_temp.getPath());
+			bmp.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+			fileOutputStream.close();
+			System.out.println("saveBmp is here:" + file.getPath() + "/"
+					+ UrlHelper.cover_string);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 }
