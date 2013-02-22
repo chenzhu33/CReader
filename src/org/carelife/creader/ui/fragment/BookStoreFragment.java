@@ -2,7 +2,7 @@ package org.carelife.creader.ui.fragment;
 
 import org.carelife.creader.R;
 import org.carelife.creader.dao.UrlHelper;
-import org.carelife.creader.ui.activity.CateList;
+import org.carelife.creader.ui.activity.BookStoreListActivity;
 import org.carelife.creader.util.NetworkUtil;
 import org.carelife.creader.util.ToastUtil;
 
@@ -66,7 +66,7 @@ public class BookStoreFragment extends Fragment {
 						UrlHelper.goto_data[index][arg2]);
 				edit.putString("catename", UrlHelper.book_cate[index][arg2]);
 				edit.commit();
-				Intent intent = new Intent(getActivity(), CateList.class);
+				Intent intent = new Intent(getActivity(), BookStoreListActivity.class);
 				getActivity().startActivity(intent);
 
 			}
